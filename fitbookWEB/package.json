@@ -1,0 +1,22 @@
+{
+  "name": "fitbook",
+  "version": "1.0.0",
+  "description": "null",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot --host 0.0.0.0"
+  },
+  "author": "pylser",
+  "license": "ISC",
+  "dependencies": {
+    "highcharts": "^5.0.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-highcharts": "^11.0.0",
+    "react-motion": "^0.4.5",
+    "react-swipeable-views": "^0.7.10"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^2.24.0"
+  }
+}
