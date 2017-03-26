@@ -3,13 +3,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import AccountIcon from 'material-ui/svg-icons/action/account-circle';
 import TextField from 'material-ui/TextField';
-import {List, ListItem} from 'material-ui/List';
-
-
-import Avatar from 'material-ui/Avatar';
 
 import Cover from './cover.jsx';
-import CoverRight from './coverright.jsx';
+import CoverGroup from './coverrightGroup.jsx';
 import AandD from './appbaranddrawer.jsx';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -384,7 +380,7 @@ const MyInfo = React.createClass({
          <Cover username={this.state.username}/>
 </div>
 <div className="rightcover">
-         <CoverRight username={this.state.username}/>
+         <CoverGroup username={this.state.username}/>
 </div>
 
 
