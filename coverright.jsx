@@ -28,7 +28,6 @@ const DetailInfo = React.createClass({
     },
     componentDidMount: function () {
         this.getfriends();
-        this.getatys();
     },
     refresh(name){
         // location.reload();
@@ -116,93 +115,6 @@ const DetailInfo = React.createClass({
 
 
     },
-    getgroups(){
-
-    },
-    setAtyTip(){
-        if (this.state.atyTip == "展开") {
-            this.setState({atyTip: "收起"});
-            this.state.rowatyobj.push(this.state.remainAty);
-            this.render();
-        } else if (this.state.atyTip == "收起") {
-            this.setState({atyTip: "展开"});
-            this.state.rowatyobj.splice(6);
-            this.render();
-        }
-    },
-
-    getatys(){
-        var xmlHttp = GetXmlHttpObject();
-        if (xmlHttp == null) {
-            alert("Browser does not support HTTP Request")
-            return
-        }
-        var url = "http://localhost:8888/fitbook/atygetter.php?username=";
-        url += this.state.username;
-        var that = this;
-        xmlHttp.onreadystatechange = function () {
-            // that.setState({btntext: xmlHttp.responseText});
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                var rows = [];
-                var tmp_aty = [];
-                var jsonstr = xmlHttp.responseText;
-                var json = new Function("return" + jsonstr)();
-
-                that.setState({atynum: json.length + "个"});
-
-                var max = 6;
-                // alert(jsonstr);
-                if (json.length == 0) {
-                    rows.push("还没有参加任何活动");
-                } else if (json.length <= max && json.length > 0) {
-                    for (var i = 0; i < json.length; i++) {
-                        rows.push(<Card_aty title={json[i].title} atyid={json[i].atyid} num={json[i].num}
-                                            intro={json[i].intro} coverlink={json[i].coverlink}
-                                            maincolor={json[i].maincolor}/>);
-                    }
-                } else if (json.length > max) {
-                    that.setState({atyTip: "展开"});
-                    for (var i = 0; i < max; i++) {
-                        rows.push(<Card_aty title={json[i].title} atyid={json[i].atyid} num={json[i].num}
-                                            intro={json[i].intro} coverlink={json[i].coverlink}
-                                            maincolor={json[i].maincolor}/>);
-                    }
-                    for (var i = max; i < json.length; i++) {
-                        tmp_aty.push(<Card_aty title={json[i].title} atyid={json[i].atyid} num={json[i].num}
-                                               intro={json[i].intro} coverlink={json[i].coverlink}
-                                               maincolor={json[i].maincolor}/>);
-                    }
-                }
-                {/*for (var i = 0; i < json.length; i++) {*/
-                }
-                {/*rows.push(<Card_aty title={json[i].title} atyid={json[i].atyid} num={json[i].num}*/
-                }
-                {/*intro={json[i].intro} coverlink={json[i].coverlink}*/
-                }
-                {/*maincolor={json[i].maincolor}/>);*/
-                }
-
-                // rows.push(<Link to={"/atyinfo/" + json[i].atyid} style={{textDecoration: 'none'}}><ListItem
-                //     primaryText={json[i].title}
-                //     leftAvatar={<AtyIcon/>}
-                // /></Link>);
-                // }
-                that.setState({rowatyobj: rows});
-                that.setState({remainAty: tmp_aty});
-                that.render();
-                // alert("aa"+that.state.remainAty);
-                // setTimeout(()=>{
-                //
-                // },0);
-
-            }
-        };
-
-
-        xmlHttp.open("GET", url, true);
-        xmlHttp.send();
-
-    },
 
     render() {
 
@@ -217,89 +129,6 @@ const DetailInfo = React.createClass({
                 <div>
                     {this.state.rowobj}
                 </div>
-
-
-                {/*<div>*/}
-                {/*<Card style={{marginTop:'30px'}}>*/}
-                {/*<CardHeader*/}
-                {/*title="好友"*/}
-                {/*style={{cursor:'pointer'}}*/}
-                {/*avatar={<FriendIcon/>}*/}
-                {/*subtitle={this.state.friendnum}*/}
-                {/*actAsExpander={true}*/}
-                {/*showExpandableButton={true}*/}
-                {/*/>*/}
-                {/*<CardText expandable={true}>*/}
-                {/*<List>*/}
-
-                {/*{this.state.rowobj}*/}
-
-                {/*</List>*/}
-
-                {/*</CardText>*/}
-
-                {/*</Card>*/}
-                {/*</div>*/}
-
-
-                <div className="qunzu">群组</div>
-                <div>
-                    <Card_group/>
-                </div>
-                {/*<div>*/}
-                {/*<Card>*/}
-                {/*<CardHeader*/}
-                {/*title="群组"*/}
-                {/*style={{cursor:'pointer'}}*/}
-                {/*avatar={<GroupIcon/>}*/}
-                {/*subtitle="1组"*/}
-                {/*actAsExpander={true}*/}
-                {/*showExpandableButton={true}*/}
-                {/*>*/}
-
-
-                {/*</CardHeader>*/}
-                {/*<CardText expandable={true}>*/}
-                {/*<List>*/}
-                {/*<Link to="/groupInfo" style={{ textDecoration: 'none' }}> <ListItem*/}
-                {/*primaryText="马拉松爱好者"*/}
-                {/*leftAvatar={<GroupIcon/>}*/}
-                {/*/>*/}
-                {/*</Link>*/}
-
-                {/*</List>*/}
-
-                {/*</CardText>*/}
-
-                {/*</Card>*/}
-                {/*</div>*/}
-
-
-                <div className="huodong">活动</div>
-                <div className="tip" onClick={this.setAtyTip}>{this.state.atyTip}</div>
-                {this.state.rowatyobj}
-
-                {/*<div>*/}
-                {/*<Card>*/}
-                {/*<CardHeader*/}
-                {/*title="活动"*/}
-                {/*style={{cu
-
-
-
-                  rsor: 'pointer'}}*/}
-                {/*avatar={<AtyIcon/>}*/}
-                {/*subtitle={this.state.atynum}*/}
-                {/*actAsExpander={true}*/}
-                {/*showExpandableButton={true}*/}
-                {/*/>*/}
-                {/*<CardText expandable={true}>*/}
-                {/*<List>*/}
-                {/*{this.state.rowatyobj}*/}
-                {/*</List>*/}
-                {/*</CardText>*/}
-                {/*</Card>*/}
-                {/*</div>*/}
 
 
             </div>
