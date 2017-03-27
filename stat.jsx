@@ -25,7 +25,7 @@ const Stat = React.createClass({
     return (
         <div>
         <AandD id="3"/>
-        <div style={{height:'81px'}}></div>
+        <div style={{height:'77px'}}></div>
 
 
 

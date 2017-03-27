@@ -57,6 +57,7 @@ const MyInfo = React.createClass({
       atyerrormsg:"",
       maxexp:0,
       isMapOpen:false,
+      mapaddress:"地点",
 
 
     }
@@ -121,9 +122,12 @@ const MyInfo = React.createClass({
 
     var maddress=document.getElementById("mapaddress").innerText;
 
+    var res=maddress+" "+addinfo;
 
-    this.refs.atylocation.value=(maddress+"  "+addinfo);
-    alert(addinfo+"  "+maddress);
+this.setState({mapaddress: ""});
+this.refs.atylocation.getInputNode().value = res;
+
+
     this.setState({isMapOpen: false});
   },
   formatTime(strdate){
@@ -467,7 +471,7 @@ const MyInfo = React.createClass({
 
 
 
-  <TextField ref="atylocation" floatingLabelText="地点"
+  <TextField ref="atylocation" hintText={this.state.mapaddress}
   /><div onTouchTap={this.handleMapOpen} style={{cursor:'pointer',verticalAlign:'bottom',display:'inline-block',marginLeft:'15px'}} ><MapIcon color="#00c1d7" /></div><br/>
 
 
