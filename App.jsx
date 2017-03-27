@@ -85,7 +85,7 @@ const LoginDia= React.createClass({
         alert ("Browser does not support HTTP Request");
         return
       }
-      var url="http://localhost:8888/fitbook/Login.php?username=";
+      var url="http://127.0.0.1:8888/fitbook/Login.php?username=";
       url+=username;
       url+="&password=";
       url+=password;
@@ -141,7 +141,7 @@ const LoginDia= React.createClass({
             alert ("Browser does not support HTTP Request");
             return
           }
-          var url="http://:8888/fitbook/forgetpsw.php?email=";
+          var url="http://localhost:8888/fitbook/forgetpsw.php?email=";
           url+=email;
 
 
@@ -217,7 +217,7 @@ const LoginDia= React.createClass({
         alert ("Browser does not support HTTP Request");
         return
       }
-      var url="http://localhost:8888/fitbook/reg.php?username=";
+      var url="http://127.0.0.1:8888/fitbook/reg.php?username=";
       url+=username;
       url+="&password=";
       url+=psw;
@@ -322,10 +322,10 @@ const LoginDia= React.createClass({
 
     return (
     <div>
-     <FlatButton label="登录" style={style}
+     <FlatButton label="登录" labelStyle={{fontSize:"16px"}} style={style}
      onTouchTap={this.handleOpen}
      />
-     <FlatButton label="注册" style={style} onTouchTap={this.handleRegOpen}/>
+     <FlatButton label="注册" labelStyle={{fontSize:"16px"}} style={style} onTouchTap={this.handleRegOpen}/>
 
      <Dialog
          title="登录"

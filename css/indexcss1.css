@@ -11,12 +11,11 @@
 .Navtitle{
   font-size: 17px;
 color: #FAFAFA;
+
+
 }
 
-.NavtitleInv{
-  font-size: 20px;
-color: #00c1d7;
-}
+
 
 .NavItem{
   display: inline-block;
@@ -28,6 +27,14 @@ color: #00c1d7;
 }
 
 .NavItem:hover .Navtitle{
+color: #00c1d7;
+}
+
+
+
+
+.NavtitleInv{
+  font-size: 20px;
 color: #00c1d7;
 }
 
@@ -359,9 +366,9 @@ margin-top:8px;
 
 #indexbg{
   background-color:#00c1d7;
-  height:422px;
+  height:290px;
   vertical-align: top;
-
+    margin-top: -10px;
 }
 #indexbgblock1{
   width:50%;
@@ -371,7 +378,7 @@ margin-top:8px;
 #indexbgbigicon{
   width:250px;
   margin-left:20%;
-  margin-top:30px
+  margin-top:10px
 }
 #indexintro{
   color:white;
@@ -388,15 +395,14 @@ margin-top:8px;
 
 
 #indexbgpic{
-  height:422px;
+  height:290px;
   padding-left:15%
 }
 
 #indexsubtitle{
-  font-size:40px;
-  margin-top:14px;
+  font-size:30px;
+  margin-top:10px;
   text-align:center;
-  margin-bottom: 14px
 }
 
 #AButton{
@@ -414,7 +420,7 @@ margin-top:8px;
 }
 
 #indexsubblock{
-  height:230px;
+  height:125px;
   vertical-align:top;
   margin-top:5px
 }
@@ -599,7 +605,7 @@ margin-left: 33%;
     #indexbgbigicon{
       width:250px;
       margin-left:18%;
-      margin-top:10px;
+      margin-top:50px;
     }
     #indexbgblock1{
       display:block;

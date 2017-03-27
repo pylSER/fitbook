@@ -19,7 +19,7 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 import Snackbar from 'material-ui/Snackbar';
 
 import { Link } from 'react-router';
-
+   
 
 function removeA(arr) {
     var what, a = arguments, L = a.length, ax;

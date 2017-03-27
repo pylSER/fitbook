@@ -29,19 +29,21 @@ const Stat = React.createClass({
 
 
 
+        <div style={{backgroundColor:"#00BCD4",height:"50px"}}>
+            <Tabs className="swipeheadHome" style={{ width:"60%",marginLeft:"20%",marginBottom:"0px"}} inkBarStyle={{backgroundColor:'#FFEB3B'}} onChange={this.handleTabs} value={this.state.slideIndex}>
+                <Tab label="睡眠" style={{height:"50px",fontSize:"16px",marginBottom:"-5px"}} value={0}>
 
-       <Tabs className="swipeheadHome" inkBarStyle={{backgroundColor:'#FFEB3B'}} onChange={this.handleTabs} value={this.state.slideIndex}>
-        <Tab label="睡眠" value={0}>
+                </Tab>
+                <Tab label="计步" style={{height:"50px",fontSize:"16px"}} value={1}>
+                </Tab>
+                <Tab label="跑步" style={{height:"50px",fontSize:"16px"}} value={2}>
+                </Tab>
+                <Tab label="骑行" style={{height:"50px",fontSize:"16px"}} value={3}>
+                </Tab>
 
-        </Tab>
-        <Tab label="计步" value={1}>
-        </Tab>
-        <Tab label="跑步" value={2}>
-        </Tab>
-        <Tab label="骑行" value={3}>
-        </Tab>
+            </Tabs>
+        </div>
 
-      </Tabs>
 
 
       <SwipeableViews

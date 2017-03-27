@@ -103,10 +103,6 @@ const MainContent = React.createClass({
     <div style={{height:'70px'}}></div>
 
 
-
-
-    <MyDrawer activeItem="1" />
-
   <div  className="testdiv">
 
     <div style={{display:'inline-block',width:'690px'}}>

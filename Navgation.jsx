@@ -143,35 +143,42 @@ const Nav= React.createClass({
 
     return (
     <div>
-      <img  id="appdrawerIcon" src="assets/icon.png" onTouchTap={this.goToIndex} style={{cursor:'pointer',display:'inline-block',marginRight:'70px'}}/>
 
-        <BottomNavigation selectedIndex={this.state.selectedIndex} style={{display:'inline-block',width:'auto',verticalAlign:'top',height:'80px',marginTop:'-7px',backgroundColor:'rgba(255,255,255,0.0)'}}>
-            <BottomNavigationItem style={{height:'85px',backgroundColor:this.state.index1class}}
+      <div style={{cursor:'pointer',display:'inline-block',marginRight:'70px',width:'180px'}}>
+      <img  id="appdrawerIcon" src="assets/icon.png" onTouchTap={this.handleIndex.bind(this,0)} />
+    </div>
+        <BottomNavigation selectedIndex={this.state.selectedIndex} style={{display:'inline-block',width:'auto',verticalAlign:'top',height:'80px',marginTop:'-12px',backgroundColor:'rgba(255,255,255,0.0)'}}>
+          <div className="NavItem">  <BottomNavigationItem  style={{borderRadius:'0',height:'80px',backgroundColor:this.state.index1class}}
 
               label={<div className={this.state.index1TypeClass}>今日数据</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,0)}
 
-            />
-          <BottomNavigationItem  style={{height:'85px',backgroundColor:this.state.index2class}}
-              label={<div className={this.state.index2TypeClass}>运动圈</div>}
+            /></div>
+
+        <div className="NavItem">
+          <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index2class}}
+              label={<div className={this.state.index2TypeClass}>朋友圈</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,1)}
-            />
+            /></div>
 
-          <BottomNavigationItem  style={{height:'85px',backgroundColor:this.state.index3class}}
+<div className="NavItem">
+          <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index3class}}
               label={<div className={this.state.index3TypeClass}>个人主页</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,2)}
 
-            />
+            /></div>
 
-          <BottomNavigationItem  style={{height:this.state.btnheight,backgroundColor:this.state.index4class}}
+
+<div className="NavItem">
+          <BottomNavigationItem  style={{borderRadius:'0',height:this.state.btnheight,backgroundColor:this.state.index4class}}
               label={<div className={this.state.index4TypeClass}>统计分析</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,3)}
 
-            />
+            /></div>
 
 
           </BottomNavigation>
