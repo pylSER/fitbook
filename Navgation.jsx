@@ -18,11 +18,13 @@ const Nav= React.createClass({
             index2class:'',
             index3class:'',
             index4class:'',
+            index5class:'',
 
             index1TypeClass:'Navtitle',
               index2TypeClass:'Navtitle',
                 index3TypeClass:'Navtitle',
                   index4TypeClass:'Navtitle',
+                  index5TypeClass:'Navtitle',
 
                   btnheight:'85px',
                   path:'',
@@ -45,6 +47,7 @@ const Nav= React.createClass({
         this.setState({index2class:'white'});
         this.setState({index3class:''});
         this.setState({index4class:''});
+        this.setState({index5class:''});
 
         this.setState({index2TypeClass:'NavtitleInv'});
 
@@ -55,6 +58,7 @@ const Nav= React.createClass({
         this.setState({index2class:''});
         this.setState({index3class:'white'});
         this.setState({index4class:''});
+        this.setState({index5class:''});
 
         this.setState({index3TypeClass:'NavtitleInv'});
 
@@ -64,11 +68,25 @@ const Nav= React.createClass({
         this.setState({index2class:''});
         this.setState({index3class:''});
         this.setState({index4class:'white'});
+        this.setState({index5class:''});
 
         this.setState({index4TypeClass:'NavtitleInv'});
         this.setState({btnheight:'71px'});
 
             break;
+
+
+            case "4":
+            this.setState({index1class:''});
+            this.setState({index2class:''});
+            this.setState({index3class:''});
+            this.setState({index4class:''});
+            this.setState({index5class:'white'});
+
+            this.setState({index5TypeClass:'NavtitleInv'});
+            
+
+                break;
         default:
 
       }
@@ -93,6 +111,9 @@ const Nav= React.createClass({
         case 3:
             window.location.href="http://localhost:8080/#/stats";
             break;
+        case 4:
+                window.location.href="http://localhost:8080/#/atyall";
+                break;
         default:
 
       }
@@ -173,12 +194,22 @@ const Nav= React.createClass({
 
 
 <div className="NavItem">
-          <BottomNavigationItem  style={{borderRadius:'0',height:this.state.btnheight,backgroundColor:this.state.index4class}}
+          <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index4class}}
               label={<div className={this.state.index4TypeClass}>统计分析</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,3)}
 
             /></div>
+
+
+
+            <div className="NavItem">
+                      <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index5class}}
+                          label={<div className={this.state.index5TypeClass}>发现</div>}
+                          icon={<span />}
+                          onTouchTap={this.handleIndex.bind(this,4)}
+
+                        /></div>
 
 
           </BottomNavigation>

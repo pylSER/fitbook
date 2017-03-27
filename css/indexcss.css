@@ -248,6 +248,27 @@ margin-left:50px;
 vertical-align:top;
 }
 
+.discover{
+    display:inline-block;
+    margin-left:10%;
+    margin-right: 10%;
+}
+
+.discover_grp{
+    margin-top:100px;
+    color:#5A5A5A;
+    display:inline-block;
+    width:100%;
+    margin-bottom: 10px;
+}
+
+.discover_aty{
+    color:#5A5A5A;
+    display:inline-block;
+    width:60%;
+    margin-bottom: 10px;
+}
+
 .quanzi{
   margin-top:100px;
   color:#5A5A5A;

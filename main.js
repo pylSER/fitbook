@@ -30,7 +30,7 @@ import NotFound from './404.jsx';
 
 import PostManage from './postmanage.jsx';
 
-
+import AtyAll from './discover.jsx';
 
 
 injectTapEventPlugin();
@@ -146,6 +146,18 @@ const ManageContent= () => (
 );
 
 
+
+
+const AtyAllContent=React.createClass({
+    render() {
+        return (
+            <MuiThemeProvider>
+                <AtyAll />
+                </MuiThemeProvider>
+              );
+    }
+});
+
 ReactDOM.render((
     <Router history={hashHistory}>
         <Route path="/" component={AppT}/>
@@ -155,6 +167,7 @@ ReactDOM.render((
         <Route path="/mygroup(/:username)" component={MyGroupContent}/>
         <Route path="/myaty(/:username)" component={MyAtyContent}/>
         <Route path="/stats(/:page)"  component={StatsContent}/>
+          <Route path="/atyall"  component={AtyAllContent}/>
 
         <Route path="/search(/:keyword)" component={SearchContent}/>
         <Route path="/groupinfo" component={GroupContent}/>

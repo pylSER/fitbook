@@ -2,7 +2,7 @@ import React from 'react';
 import AandD from './appbaranddrawer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-import SleepStats from './sleepstats.jsx';
+import SleepStats from './sleepstats0.jsx';
 import WalkStats from './walkstats.jsx';
 import RunStats from './runstats.jsx';
 import RideStats from './ridestats.jsx';
