@@ -3,9 +3,9 @@ import AandD from './appbaranddrawer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import SleepStats from './sleepstats0.jsx';
-import WalkStats from './walkstats.jsx';
-import RunStats from './runstats.jsx';
-import RideStats from './ridestats.jsx';
+import WalkStats from './walkstats0.jsx';
+import RunStats from './runstats0.jsx';
+import RideStats from './ridestats0.jsx';
 import MyDrawer from './mydrawer.jsx';
 
 
@@ -29,7 +29,7 @@ const Stat = React.createClass({
 
 
 
-        <div style={{backgroundColor:"#00ACC1",height:"50px",width:'100%',position:'fixed',zIndex:'9999'}}>
+        <div style={{backgroundColor:"#00ACC1",height:"50px",width:'100%',position:'fixed',zIndex:'888'}}>
             <Tabs tabItemContainerStyle={{backgroundColor:'#00ACC1'}} className="swipeheadHome" style={{ width:"60%",marginLeft:"20%",marginBottom:"0px"}} inkBarStyle={{backgroundColor:'#FFEB3B'}} onChange={this.handleTabs} value={this.state.slideIndex}>
                 <Tab label="睡眠" style={{height:"50px",fontSize:"16px",marginBottom:"-5px"}} value={0}>
 

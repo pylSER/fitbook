@@ -8,6 +8,16 @@ function checkEmail(address){
 }
 
 
+function convertTimeStamp(stamp){
+  var dateTime = new Date(stamp);
+  var res=" ";
+  res+=dateTime.toISOString().substring(11,13);
+  res+=":";
+  res+=dateTime.toISOString().substring(14,16);
+  return res;
+}
+
+
 function swipeout(swipeflag,id){
 
 

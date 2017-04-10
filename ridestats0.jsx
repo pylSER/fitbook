@@ -23,13 +23,13 @@ import Chart from './myhighchart.jsx';
 import DurationIcon from 'material-ui/svg-icons/image/timelapse';
 
 
+
+
 var myDate = new Date();
 
 var averages;
 
 var option1={
-
-
   chart: {
            type: 'spline'
        },
@@ -45,74 +45,55 @@ var option1={
                overflow: 'justify'
            }
        },
-
-       tooltip:{
-           xDateFormat: '%Y-%m-%d',
-           pointFormatter:function() {
-    return '入睡时间:'+ convertTimeStamp(this.y)+"";
-    },
-
-
-       },
-
-
-
        yAxis: {
-
-         tickInterval:7000000,
-          type: 'datetime',
-          floor: 915192000000+3600*7*1000,
-
-           ceiling: 915220800000+3600*9*1000,
            title: {
-               text: '时间'
-           },
-           dateTimeLabelFormats: {
-               day: '00:00'
+               text: '距离'
            },
            min: 0,
+           tickInterval:0.5,
            minorGridLineWidth: 1,
-           gridLineWidth: 1,
            gridLineDashStyle: 'dash',
+           gridLineWidth: 1,
            alternateGridColor: null,
            plotBands: [{ // Gentle breeze
-               from: 915192000000+3600*7*1000,
-               to: 915192000000+3600*10*1000,
+               from: 0,
+               to: 5.5,
               //  color: 'rgba(68, 170, 213, 0.1)',
                label: {
-                   text: '过早睡眠',
+                   text: '短距离',
                    style: {
-
                      "font-size":'15px',
                        "color": '#606060',
-
                    }
                }
            }, { // Moderate breeze
-               from: 915192000000+3600*10*1000,
-               to: 915192000000+3600*13*1000,
-              //  color: 'rgba(0, 0, 0, 0)',
+               from: 5.5,
+               to: 8,
+               color: 'rgba(0, 0, 0, 0)',
                label: {
-                   text: '正常睡眠',
-                   style: {
-                     "font-size":'15px',
-                       "color": '#606060'
-                   }
-               }
-           }, { // Fresh breeze
-               from: 915192000000+3600*13*1000,
-               to: 915220800000+3600*9*1000,
-              //  color: 'rgba(68, 170, 213, 0.1
-               label: {
-                   text: '熬夜',
+                   text: '中距离',
                    style: {
                      "font-size":'15px',
                        "color": '#606060',
-                        top:'17px',
+                   }
+               }
+           }, { // Fresh breeze
+               from: 8,
+               to: 15,
+              //  color: 'rgba(68, 170, 213, 0.1)',
+               label: {
+                   text: '长途',
+                   style: {
+                     "font-size":'15px',
+                       "color": '#606060',
                    }
                }
            }]
        },
+       tooltip: {
+         xDateFormat: '%Y-%m-%d',
+       valueSuffix: 'KM'
+     },
        plotOptions: {
            spline: {
                lineWidth: 2,
@@ -124,173 +105,18 @@ var option1={
                marker: {
                    enabled: false
                },
+               pointInterval: 3600000*24, // one hour
+               pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
            }
        },
        series: [{
-           name: '入睡时间',
-           data: [
-                       [0, 1248825500000],
-                       [0, 1248825600030],
-                       [0, 1248825800100]
-                   ]
+           name: '距离曲线',
+           data: [10.1, 10.2, 10.0, 11.0, 7.0, 8.0, 10.0, 10.0, 12.1, 17.0, 12.3, 10.0,
+                   10.0, 0.4, 7.0, 3.1, 2.0, 4.0, 5.0, 8.0, 12.0, 15.0, 4.0, 0.0,
+                   0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
+                   3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4]
        }, ]
 }
-
-
-
-var option2={
-  chart: {
-           type: 'spline'
-       },
-       title: {
-           text: ''
-       },
-       subtitle: {
-           text: ''
-       },
-       xAxis: {
-           type: 'datetime',
-           labels: {
-               overflow: 'justify'
-           }
-       },
-
-       tooltip:{
-         pointFormat: '',
-       },
-
-
-
-       yAxis: {
-          type: 'datetime',
-          floor: 915134400000+3600*6*1000,
-           ceiling: 915156000000+3600*13*1000,
-           title: {
-               text: '时间'
-           },
-           dateTimeLabelFormats: {
-               day: '00:00'
-           },
-           min: 0,
-           minorGridLineWidth: 0,
-           gridLineWidth: 0,
-           alternateGridColor: null,
-           plotBands: [{ // Gentle breeze
-               from: 915134400000+3600*6*1000,
-               to: 915134400000+3600*9*1000,
-               color: 'rgba(68, 170, 213, 0.1)',
-               label: {
-                   text: '过早起床',
-                   style: {
-                       color: '#606060'
-                   }
-               }
-           }, { // Moderate breeze
-               from: 915134400000+3600*9*1000,
-               to: 915134400000+3600*12*1000,
-               color: 'rgba(0, 0, 0, 0)',
-               label: {
-                   text: '正常起床',
-                   style: {
-                       color: '#606060'
-                   }
-               }
-           }, { // Fresh breeze
-               from: 915134400000+3600*12*1000,
-               to: 915156000000+3600*13*1000,
-               color: 'rgba(68, 170, 213, 0.1)',
-               label: {
-                   text: '赖床',
-                   style: {
-                       color: '#606060'
-                   }
-               }
-           }]
-       },
-       plotOptions: {
-           spline: {
-               lineWidth: 2,
-               states: {
-                   hover: {
-                       lineWidth: 3
-                   }
-               },
-               marker: {
-                   enabled: false
-               },
-           }
-       },
-       series: [{
-           name: '起床曲线',
-           data: [
-                       [0, 1248825500000],
-                       [0, 1248825600030],
-                       [0, 1248825800100]
-                   ]
-       }, ]
-}
-
-var option3={
-  chart: {
-    height:150,
-    width:300,
-          type: 'spline'
-      },
-      title: {
-          text: ''
-      },
-      legend: {
-          layout: 'vertical',
-          align: 'left',
-          verticalAlign: 'top',
-          x: 150,
-          y: 100,
-          floating: true,
-          borderWidth: 0,
-          backgroundColor:'#FFFFFF'
-      },
-          xAxis: {
-          			visible:false,
-
-              },
-              yAxis: {
-                 visible:false,
-              },
-              legend: {
-                  enabled: false
-              },
-      tooltip: {
-          shared: true,
-          valueSuffix: ' units'
-      },
-      credits: {
-          enabled: false
-      },
-      plotOptions: {
-          spline: {
-              fillOpacity: 0.5,
-               marker: {
-                  enabled: false,
-                  symbol: 'circle',
-                  radius: 1,
-                  states: {
-                      hover: {
-                          enabled: true
-                      }
-                  }
-              }
-          }
-      },
-      series: [{
-          name: 'John',
-          data: [3.5,3,4,6,4,5,5,4,4.5]
-      }]
-
-
-
-
-}
-
 
 const SleepTab = React.createClass({
   getInitialState(){
@@ -406,12 +232,6 @@ const SleepTab = React.createClass({
           that.setState({totalduration: json[2].totalduration});
 
 
-            let chart = that.refs.chart1.getChart();
-            chart.series[0].setData(json[3]);
-
-
-
-
         }
       };
 
@@ -431,7 +251,7 @@ const SleepTab = React.createClass({
         <div style={{height:'65px'}}></div>
 
 
-        <h2>睡眠时长</h2>
+        <h2>骑行距离统计</h2>
         <div style={{height:'20px'}}></div>
 
       <Divider />
@@ -439,28 +259,29 @@ const SleepTab = React.createClass({
 
       <ReactHighstock config = {option1} ref="chart1"></ReactHighstock>
 
-<div style={{width:'35%',display:'inline-block',height:'100px',marginTop:'45px'}}>
+<div style={{width:'35%',display:'inline-block',height:'100px',marginTop:'60px'}}>
 
-<div className="statssub1">7小时35分</div>
-<div style={{marginTop:'19px',color:'#00ACC1',textAlign:'center'}}>
-平均睡眠时间&nbsp;
+<div className="statssub1">25分</div>
+<div style={{marginTop:'19px',textAlign:'center',color:'#00ACC1'}}>
+平均单次骑行时长&nbsp;
   </div>
 
   </div>
 
-<div style={{width:'32%',display:'inline-block',verticalAlign:'top',marginTop:'45px'}}>
-  <div className="statssub1">23:09</div>
-  <div style={{marginTop:'19px',color:'#00ACC1',textAlign:'center'}}>
-  平均每晚入睡时刻&nbsp;
+<div style={{width:'32%',display:'inline-block'}}>
+  <div className="statssub1">12.4<span style={{fontSize:'45px'}}>km/h</span></div>
+  <div style={{marginTop:'19px',textAlign:'center',color:'#00ACC1'}}>
+  平均速度&nbsp;
     </div>
 
 </div>
 
 
-<div style={{width:'32%',display:'inline-block',verticalAlign:'top',marginTop:'45px'}}>
-  <div className="statssub1">07:53</div>
-  <div style={{marginTop:'19px',color:'#00ACC1',textAlign:'center'}}>
-  平均起床时刻
+
+<div style={{width:'32%',display:'inline-block'}}>
+  <div className="statssub1">33767<span style={{fontSize:'45px'}}>kCal</span></div>
+  <div style={{marginTop:'19px',textAlign:'center',color:'#00ACC1'}}>
+  到目前共消耗热量
     </div>
 </div>
 

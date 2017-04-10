@@ -107,6 +107,8 @@ const Nav= React.createClass({
           break;
         case 2:
             window.location.href="http://localhost:8080/#"+this.state.path;
+
+            location.reload();
             break;
         case 3:
             window.location.href="http://localhost:8080/#/stats";

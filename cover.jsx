@@ -19,7 +19,7 @@ import GroupIcon from 'material-ui/svg-icons/social/people';
 import AtyIcon from 'material-ui/svg-icons/image/assistant-photo';
 import {white,grey50,grey700} from 'material-ui/styles/colors';
 
-
+import MsgIcon from 'material-ui/svg-icons/communication/message';
 function isInteger(str) {
     if(/^\d+$/.test(str))
     {
@@ -41,12 +41,12 @@ const Cover = React.createClass({
             level:"",
             age:0,
             gender:"",
-            addfriend:"",
-            delfriend:"",
+            addfriend:"none",
+            delfriend:"none",
             avatarlink:"",
             coverlink:"",
             changedisplay: "",
-            maincolor:"#FFA400",
+            maincolor:"#FFFFFF",
             isavatarUploadOpen:false,
             iscoverUploadOpen:false,
             uploadavatarname:"",
@@ -60,48 +60,52 @@ const Cover = React.createClass({
             icon2:'white',
             icon3:'white',
             icon4:'white',
+            ta:'我',
+            isMsgShow:'',
 
         }
     },
-    ColorChange() {
+    ColorChange(color) {
+
+
       if(this.state.infoStatus=="right1"){
           this.setState({right1item: "white"});
-          this.setState({right2item: "#FFA400"});
-          this.setState({right3item: "#FFA400"});
-          this.setState({right4item: "#FFA400"});
+          this.setState({right2item: this.state.maincolor});
+          this.setState({right3item: this.state.maincolor});
+          this.setState({right4item: this.state.maincolor});
 
-          this.setState({icon1: "#FFA400"});
+          this.setState({icon1: this.state.maincolor});
           this.setState({icon2: "white"});
           this.setState({icon3: "white"});
           this.setState({icon4: "white"});
 
       }else if (this.state.infoStatus=="right2") {
         this.setState({right2item: "white"});
-        this.setState({right1item: "#FFA400"});
-        this.setState({right3item: "#FFA400"});
-        this.setState({right4item: "#FFA400"});
+        this.setState({right1item: this.state.maincolor});
+        this.setState({right3item: this.state.maincolor});
+        this.setState({right4item: this.state.maincolor});
 
-        this.setState({icon2: "#FFA400"});
+        this.setState({icon2: this.state.maincolor});
         this.setState({icon1: "white"});
         this.setState({icon3: "white"});
         this.setState({icon4: "white"});
       }else if (this.state.infoStatus=="right3") {
         this.setState({right3item: "white"});
-        this.setState({right2item: "#FFA400"});
-        this.setState({right1item: "#FFA400"});
-        this.setState({right4item: "#FFA400"});
+        this.setState({right2item: this.state.maincolor});
+        this.setState({right1item: this.state.maincolor});
+        this.setState({right4item: this.state.maincolor});
 
-        this.setState({icon3: "#FFA400"});
+        this.setState({icon3: this.state.maincolor});
         this.setState({icon2: "white"});
         this.setState({icon1: "white"});
         this.setState({icon4: "white"});
       }else if (this.state.infoStatus=="right4") {
         this.setState({right4item: "white"});
-        this.setState({right2item: "#FFA400"});
-        this.setState({right3item: "#FFA400"});
-        this.setState({right1item: "#FFA400"});
+        this.setState({right2item: this.state.maincolor});
+        this.setState({right3item: this.state.maincolor});
+        this.setState({right1item: this.state.maincolor});
 
-        this.setState({icon4: "#FFA400"});
+        this.setState({icon4: this.state.maincolor});
         this.setState({icon2: "white"});
         this.setState({icon3: "white"});
         this.setState({icon1: "white"});
@@ -338,7 +342,8 @@ const Cover = React.createClass({
     },
     componentDidMount: function() {
         this.initData();
-        this.ColorChange();
+
+
     },
     initData(){
 
@@ -376,11 +381,22 @@ const Cover = React.createClass({
                     that.setState({coverlink: json.coverlink});
                     that.setState({maincolor: json.maincolor});
 
+                    that.ColorChange(json.maincolor);
+
+
                     if(json.ishimself==1){
                         that.setState({addfriend: "none"});
                         that.setState({delfriend: "none"});
                         that.setState({changedisplay: ""});
+
+
+
+
+
                     }else{
+                      that.setState({isMsgShow: "none"});
+                      that.setState({ta: "TA"});
+
                         that.setState({changedisplay: "none"});
                         if(json.isfriend==1){
                             that.setState({addfriend: "none"});
@@ -397,11 +413,15 @@ const Cover = React.createClass({
             }
         };
 
+
+
         xmlHttp.open("GET",url,true);
         xmlHttp.send();
+
     },
 
     render() {
+
         const actions = [
             <FlatButton
                 label="取消"
@@ -455,6 +475,7 @@ const Cover = React.createClass({
             />,
         ];
 
+
         return (
 
             <div style={{width: '73%'}}>
@@ -476,12 +497,12 @@ const Cover = React.createClass({
 
 
                     <List >
-                        <ListItem style={{color: '#ffffff'}} leftIcon={<ModifyIcon color={grey50} />} primaryText="修改个人资料" onTouchTap={this.handleModify}/>
-                        <Divider style={{marginBottom:'7px'}}/>
-                        <ListItem innerDivStyle={{backgroundColor:this.state.right1item}} hoverColor="#FFA400" id="right1"  leftIcon={<FriendIcon color={this.state.icon1} />} primaryText={<span style={{color:this.state.icon1}}>我的好友</span>} onTouchTap={this.handleDetail.bind(this,1)}/>
-                        <ListItem innerDivStyle={{backgroundColor:this.state.right2item}} hoverColor="#FFA400" id="right2"  leftIcon={<GroupIcon color={this.state.icon2} />} primaryText={<span style={{color:this.state.icon2}}>我的群组</span>} onTouchTap={this.handleDetail.bind(this,2)}/>
-                        <ListItem innerDivStyle={{backgroundColor:this.state.right3item}} hoverColor="#FFA400" id="right3"   leftIcon={<AtyIcon color={this.state.icon3} />} primaryText={<span style={{color:this.state.icon3}}>我的活动</span>} onTouchTap={this.handleDetail.bind(this,3)}/>
-                        <ListItem innerDivStyle={{backgroundColor:this.state.right4item}}  hoverColor="#FFA400" id="right4"  leftIcon={<AtyIcon color={this.state.icon4} />} primaryText={<span style={{color:this.state.icon4}}>我的消息</span>} onTouchTap={this.handleDetail.bind(this,4)}/>
+                        <ListItem style={{color: '#ffffff',display:this.state.isMsgShow}} leftIcon={<ModifyIcon color={grey50} />} primaryText="修改个人资料" onTouchTap={this.handleModify}/>
+                        <Divider style={{marginBottom:'7px',display:this.state.isMsgShow}}/>
+                        <ListItem innerDivStyle={{backgroundColor:this.state.right1item}} hoverColor={this.state.maincolor} id="right1"  leftIcon={<FriendIcon color={this.state.icon1} />} primaryText={<span style={{color:this.state.icon1}}>{this.state.ta}的好友</span>} onTouchTap={this.handleDetail.bind(this,1)}/>
+                        <ListItem innerDivStyle={{backgroundColor:this.state.right2item}} hoverColor={this.state.maincolor} id="right2"  leftIcon={<GroupIcon color={this.state.icon2} />} primaryText={<span style={{color:this.state.icon2}}>{this.state.ta}的群组</span>} onTouchTap={this.handleDetail.bind(this,2)}/>
+                        <ListItem innerDivStyle={{backgroundColor:this.state.right3item}} hoverColor={this.state.maincolor} id="right3"   leftIcon={<AtyIcon color={this.state.icon3} />} primaryText={<span style={{color:this.state.icon3}}>{this.state.ta}的活动</span>} onTouchTap={this.handleDetail.bind(this,3)}/>
+                        <ListItem style={{display:this.state.isMsgShow}} innerDivStyle={{backgroundColor:this.state.right4item}}  hoverColor={this.state.maincolor} id="right4"  leftIcon={<MsgIcon color={this.state.icon4} />} primaryText={<span style={{color:this.state.icon4}}>{this.state.ta}的消息</span>} onTouchTap={this.handleDetail.bind(this,4)}/>
                     </List>
 
                     <RaisedButton

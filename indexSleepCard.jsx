@@ -124,7 +124,7 @@ const IndexCard = React.createClass({
       alert ("Browser does not support HTTP Request");
       return;
     }
-    var url="http://127.0.0.1:80/fitbook/poster.php?ssid=";
+    var url="http://127.0.0.1:8888/fitbook/poster.php?ssid=";
     url+=getCookie("ssid");
     url+="&type=";
     url+="1";
