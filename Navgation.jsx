@@ -84,7 +84,7 @@ const Nav= React.createClass({
             this.setState({index5class:'white'});
 
             this.setState({index5TypeClass:'NavtitleInv'});
-            
+
 
                 break;
         default:
@@ -168,7 +168,7 @@ const Nav= React.createClass({
       <div style={{cursor:'pointer',display:'inline-block',marginRight:'70px',width:'180px'}}>
       <img  id="appdrawerIcon" src="assets/icon.png" onTouchTap={this.handleIndex.bind(this,0)} />
     </div>
-        <BottomNavigation selectedIndex={this.state.selectedIndex} style={{display:'inline-block',width:'auto',verticalAlign:'top',height:'80px',marginTop:'-12px',backgroundColor:'rgba(255,255,255,0.0)'}}>
+        <BottomNavigation selectedIndex={this.state.selectedIndex} style={{display:'inline-block',width:'auto',verticalAlign:'top',height:'80px',marginTop:'-11px',backgroundColor:'rgba(255,255,255,0.0)'}}>
           <div className="NavItem">  <BottomNavigationItem  style={{borderRadius:'0',height:'80px',backgroundColor:this.state.index1class}}
 
               label={<div className={this.state.index1TypeClass}>今日数据</div>}
@@ -178,14 +178,14 @@ const Nav= React.createClass({
             /></div>
 
         <div className="NavItem">
-          <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index2class}}
+          <BottomNavigationItem  style={{borderRadius:'0',height:'80px',backgroundColor:this.state.index2class}}
               label={<div className={this.state.index2TypeClass}>朋友圈</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,1)}
             /></div>
 
 <div className="NavItem">
-          <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index3class}}
+          <BottomNavigationItem  style={{borderRadius:'0',height:'80px',backgroundColor:this.state.index3class}}
               label={<div className={this.state.index3TypeClass}>个人主页</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,2)}
@@ -194,7 +194,7 @@ const Nav= React.createClass({
 
 
 <div className="NavItem">
-          <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index4class}}
+          <BottomNavigationItem  style={{borderRadius:'0',height:'80px',backgroundColor:this.state.index4class}}
               label={<div className={this.state.index4TypeClass}>统计分析</div>}
               icon={<span />}
               onTouchTap={this.handleIndex.bind(this,3)}
@@ -204,7 +204,7 @@ const Nav= React.createClass({
 
 
             <div className="NavItem">
-                      <BottomNavigationItem  style={{borderRadius:'0',height:'85px',backgroundColor:this.state.index5class}}
+                      <BottomNavigationItem  style={{borderRadius:'0',height:'80px',backgroundColor:this.state.index5class}}
                           label={<div className={this.state.index5TypeClass}>发现</div>}
                           icon={<span />}
                           onTouchTap={this.handleIndex.bind(this,4)}

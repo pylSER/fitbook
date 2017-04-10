@@ -377,7 +377,7 @@ const MyInfo = React.createClass({
           <AandD id="2" />
 
 <div className="wholecover" >
-         <Cover username={this.state.username}/>
+         <Cover username={this.state.username} infoStatus="right3"/>
 </div>
 <div className="rightcover">
          <CoverAty username={this.state.username}/>

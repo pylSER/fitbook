@@ -13,6 +13,8 @@ import MyGroup from './mygroup.jsx';
 
 import MyAty from './myaty.jsx';
 
+import MyMessage from './message.jsx';
+
 import Stats from './stat.jsx';
 
 import Search from './searchres.jsx';
@@ -81,6 +83,16 @@ const MyAtyContent=React.createClass({
         return (
             <MuiThemeProvider>
                 <MyAty  username={this.props.params.username}/>
+            </MuiThemeProvider>
+        );
+    }
+});
+
+const MyMessageContent=React.createClass({
+    render() {
+        return (
+            <MuiThemeProvider>
+                <MyMessage  username={this.props.params.username}/>
             </MuiThemeProvider>
         );
     }
@@ -166,6 +178,7 @@ ReactDOM.render((
         <Route path="/myinfo(/:username)" component={MyInfoContent}/>
         <Route path="/mygroup(/:username)" component={MyGroupContent}/>
         <Route path="/myaty(/:username)" component={MyAtyContent}/>
+        <Route path="/mymessage(/:username)" component={MyMessageContent}/>
         <Route path="/stats(/:page)"  component={StatsContent}/>
           <Route path="/atyall"  component={AtyAllContent}/>
 

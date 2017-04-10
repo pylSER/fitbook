@@ -8,6 +8,48 @@
   src: url('/assets/Font/Economica-Regular.ttf');
 }
 
+
+
+
+.statssub1{
+  font-family: NumberFont;
+  font-size: 50px;
+  color: #00ACC1;
+  display: inline-block;
+
+}
+
+#discoverLeft{
+    display:inline-block;
+    width:25%;
+    margin-left:8%;
+}
+
+.discover{
+
+    display:inline-block;
+    width: 30%;
+    vertical-align:top;
+    margin-left: 5%;
+
+}
+
+.discover_grp{
+
+    color:#5A5A5A;
+    display:inline-block;
+    width:30%;
+    margin-bottom: 10px;
+}
+
+.discover_aty{
+    color:#5A5A5A;
+    display:inline-block;
+    width:30%;
+    margin-bottom: 10px;
+}
+
+
 .Navtitle{
   font-size: 17px;
 color: #FAFAFA;
@@ -108,10 +150,11 @@ to {left:180px;}
 
 .testdiv{
   position: relative;
-  left:290px;
+  /*left:290px;*/
   background-color: white;
-  width: 78%;
-  height: 1500px;
+  width: 80%;
+    margin-left: 17%;
+  height: auto;
   display: inline-block;
   vertical-align: top;
 }
@@ -248,26 +291,7 @@ margin-left:50px;
 vertical-align:top;
 }
 
-.discover{
-    display:inline-block;
-    margin-left:10%;
-    margin-right: 10%;
-}
 
-.discover_grp{
-    margin-top:100px;
-    color:#5A5A5A;
-    display:inline-block;
-    width:100%;
-    margin-bottom: 10px;
-}
-
-.discover_aty{
-    color:#5A5A5A;
-    display:inline-block;
-    width:60%;
-    margin-bottom: 10px;
-}
 
 .quanzi{
   margin-top:100px;
@@ -323,8 +347,8 @@ vertical-align:top;
 
 .rightcover{
 display:inline-block;
-margin-left:34%;
-width:60%;
+margin-left:23%;
+width:70%;
 }
 
 

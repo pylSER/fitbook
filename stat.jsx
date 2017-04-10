@@ -29,8 +29,8 @@ const Stat = React.createClass({
 
 
 
-        <div style={{backgroundColor:"#00BCD4",height:"50px"}}>
-            <Tabs className="swipeheadHome" style={{ width:"60%",marginLeft:"20%",marginBottom:"0px"}} inkBarStyle={{backgroundColor:'#FFEB3B'}} onChange={this.handleTabs} value={this.state.slideIndex}>
+        <div style={{backgroundColor:"#00ACC1",height:"50px",width:'100%',position:'fixed',zIndex:'9999'}}>
+            <Tabs tabItemContainerStyle={{backgroundColor:'#00ACC1'}} className="swipeheadHome" style={{ width:"60%",marginLeft:"20%",marginBottom:"0px"}} inkBarStyle={{backgroundColor:'#FFEB3B'}} onChange={this.handleTabs} value={this.state.slideIndex}>
                 <Tab label="睡眠" style={{height:"50px",fontSize:"16px",marginBottom:"-5px"}} value={0}>
 
                 </Tab>

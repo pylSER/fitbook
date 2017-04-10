@@ -1,13 +1,13 @@
 import React from 'react';
 import AandD from './appbaranddrawer.jsx';
 import MessageBar from './messagebar.jsx';
-
+import Cover from './cover.jsx';
 
 const Message = React.createClass({
 
     getInitialState(){
         return {
-
+            username: this.props.username,
             msgobj: "",
 
             infoLen: 0,
@@ -46,7 +46,7 @@ const Message = React.createClass({
             return
         }
 
-        var url = "http://127.0.0.1:80/fitbook/msggetter.php?ssid=";
+        var url = "http://127.0.0.1:8888/fitbook/msggetter.php?ssid=";
         url += getCookie("ssid");
 
         var that = this;
@@ -100,7 +100,12 @@ const Message = React.createClass({
   render() {
 
     return (
+
       <div>
+          <div className="wholecover" >
+              <Cover username={this.state.username} infoStatus="right4"/>
+          </div>
+
           <AandD />
           <div style={{height:'61px'}}></div>
           <div style={{marginLeft:'23%',marginRight:'23%'}}>
@@ -113,7 +118,6 @@ const Message = React.createClass({
                               {/*msgid={1} state={2} title={'邀请你加入活动 骑速'}/>*/}
           {/*<MessageBar content={'邀请你加入活动 骑速'}/>*/}
               </div></div>
-
 
       </div>
     );

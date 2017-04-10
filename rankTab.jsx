@@ -19,21 +19,21 @@ const ListExampleContacts = () => (
     <List>
       <ListItem
         primaryText="Eric Hoffman"
-        leftIcon={<OneIcon color="red" />}
+        rightIcon={<OneIcon color="#ea4335" />}
         insetChildren={true}
-        rightAvatar={<Avatar src="assets/avatar/1.jpeg" />}
+        leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
       <ListItem
         primaryText="James Anderson"
-        leftIcon={<TwoIcon color="blue" />}
+        rightIcon={<TwoIcon color="#4285f4" />}
         insetChildren={true}
-        rightAvatar={<Avatar src="assets/avatar/2.jpeg" />}
+        leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
       <ListItem
         primaryText="Kerem Suer"
-        leftIcon={<ThreeIcon color="green" />}
+        rightIcon={<ThreeIcon color="#fbbc05" />}
         insetChildren={true}
-        rightAvatar={<Avatar src="assets/avatar/3.jpeg" />}
+        leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
     </List>
     <Divider />
@@ -43,20 +43,20 @@ const ListExampleContacts = () => (
       <ListItem
         primaryText="Adham Dannaway"
         insetChildren={true}
-        leftIcon={<OneIcon color="red"/>}
-        rightAvatar={<Avatar src="assets/avatar/2.jpeg" />}
+        rightIcon={<OneIcon color="#ea4335"/>}
+        leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
       <ListItem
         primaryText="Allison Grayce"
         insetChildren={true}
-        leftIcon={<TwoIcon color="blue" />}
-        rightAvatar={<Avatar src="assets/avatar/1.jpeg" />}
+        rightIcon={<TwoIcon color="#4285f4" />}
+        leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
       <ListItem
         primaryText="Angel Ceballos"
         insetChildren={true}
-        leftIcon={<ThreeIcon color="green" />}
-        rightAvatar={<Avatar src="assets/avatar/3.jpeg" />}
+        rightIcon={<ThreeIcon color="#fbbc05" />}
+        leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
     </List>
 
@@ -67,20 +67,20 @@ const ListExampleContacts = () => (
       <ListItem
         primaryText="Adham Dannaway"
         insetChildren={true}
-        leftIcon={<OneIcon color="red" />}
-        rightAvatar={<Avatar src="assets/avatar/2.jpeg" />}
+        rightIcon={<OneIcon color="#ea4335" />}
+        leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
       <ListItem
         primaryText="Allison Grayce"
         insetChildren={true}
-        leftIcon={<TwoIcon color="blue" />}
-        rightAvatar={<Avatar src="assets/avatar/1.jpeg" />}
+        rightIcon={<TwoIcon color="#4285f4" />}
+        leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
       <ListItem
         primaryText="Angel Ceballos"
         insetChildren={true}
-        leftIcon={<ThreeIcon color="green" />}
-        rightAvatar={<Avatar src="assets/avatar/3.jpeg" />}
+        rightIcon={<ThreeIcon color="#fbbc05" />}
+        leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
     </List>
 
@@ -91,20 +91,20 @@ const ListExampleContacts = () => (
       <ListItem
         primaryText="Adham Dannaway"
         insetChildren={true}
-        leftIcon={<OneIcon color="red" />}
-        rightAvatar={<Avatar src="assets/avatar/2.jpeg" />}
+        rightIcon={<OneIcon color="#ea4335" />}
+        leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
       <ListItem
         primaryText="Allison Grayce"
         insetChildren={true}
-        leftIcon={<TwoIcon color="blue" />}
-        rightAvatar={<Avatar src="assets/avatar/1.jpeg" />}
+        rightIcon={<TwoIcon color="#4285f4" />}
+        leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
       <ListItem
         primaryText="Angel Ceballos"
         insetChildren={true}
-        leftIcon={<ThreeIcon color="green" />}
-        rightAvatar={<Avatar src="assets/avatar/3.jpeg" />}
+        rightIcon={<ThreeIcon color="#fbbc05" />}
+        leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
     </List>
   </div>

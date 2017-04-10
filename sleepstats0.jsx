@@ -1,6 +1,9 @@
 import React from 'react';
 
 import ReactHighcharts from 'react-highcharts';
+import ReactHighstock from 'react-highcharts/ReactHighstock.src';
+
+
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -15,13 +18,20 @@ import SecIcon from 'material-ui/svg-icons/image/filter-2';
 import ThirdIcon from 'material-ui/svg-icons/image/filter-3';
 import DatePicker from 'material-ui/DatePicker';
 import RightPaper from './rightpaper.jsx';
+import Divider from 'material-ui/Divider';
+import Chart from './myhighchart.jsx';
+import DurationIcon from 'material-ui/svg-icons/image/timelapse';
 
-import Chart from './myhighchart.jsx'
+
+
+
 var myDate = new Date();
 
 var averages;
 
 var option1={
+
+
   chart: {
            type: 'spline'
        },
@@ -55,37 +65,42 @@ var option1={
                day: '00:00'
            },
            min: 0,
-           minorGridLineWidth: 0,
-           gridLineWidth: 0,
+           minorGridLineWidth: 1,
+           gridLineWidth: 1,
            alternateGridColor: null,
            plotBands: [{ // Gentle breeze
                from: 915192000000+3600*7*1000,
                to: 915192000000+3600*10*1000,
-               color: 'rgba(68, 170, 213, 0.1)',
+              //  color: 'rgba(68, 170, 213, 0.1)',
                label: {
                    text: '过早睡眠',
                    style: {
-                       color: '#606060'
+
+                     "font-size":'15px',
+                       "color": '#606060',
+                       "margin-top":'17px',
                    }
                }
            }, { // Moderate breeze
                from: 915192000000+3600*10*1000,
                to: 915192000000+3600*13*1000,
-               color: 'rgba(0, 0, 0, 0)',
+              //  color: 'rgba(0, 0, 0, 0)',
                label: {
                    text: '正常睡眠',
                    style: {
-                       color: '#606060'
+                     "font-size":'15px',
+                       "color": '#606060'
                    }
                }
            }, { // Fresh breeze
                from: 915192000000+3600*13*1000,
                to: 915220800000+3600*9*1000,
-               color: 'rgba(68, 170, 213, 0.1)',
+              //  color: 'rgba(68, 170, 213, 0.1
                label: {
                    text: '熬夜',
                    style: {
-                       color: '#606060'
+                     "font-size":'15px',
+                       "color": '#606060'
                    }
                }
            }]
@@ -95,7 +110,7 @@ var option1={
                lineWidth: 2,
                states: {
                    hover: {
-                       lineWidth: 3
+                       lineWidth: 2
                    }
                },
                marker: {
@@ -207,7 +222,66 @@ var option2={
        }, ]
 }
 
+var option3={
+  chart: {
+    height:150,
+    width:300,
+          type: 'spline'
+      },
+      title: {
+          text: ''
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'left',
+          verticalAlign: 'top',
+          x: 150,
+          y: 100,
+          floating: true,
+          borderWidth: 0,
+          backgroundColor:'#FFFFFF'
+      },
+          xAxis: {
+          			visible:false,
 
+              },
+              yAxis: {
+                 visible:false,
+              },
+              legend: {
+                  enabled: false
+              },
+      tooltip: {
+          shared: true,
+          valueSuffix: ' units'
+      },
+      credits: {
+          enabled: false
+      },
+      plotOptions: {
+          spline: {
+              fillOpacity: 0.5,
+               marker: {
+                  enabled: false,
+                  symbol: 'circle',
+                  radius: 1,
+                  states: {
+                      hover: {
+                          enabled: true
+                      }
+                  }
+              }
+          }
+      },
+      series: [{
+          name: 'John',
+          data: [3.5,3,4,6,4,5,5,4,4.5]
+      }]
+
+
+
+
+}
 
 
 const SleepTab = React.createClass({
@@ -347,19 +421,45 @@ const SleepTab = React.createClass({
 
       <div className="container">
 
+        <div style={{height:'65px'}}></div>
 
 
-        <div style={{height:'80px'}}></div>
+        <h2>睡眠时长</h2>
+        <div style={{height:'20px'}}></div>
+
+      <Divider />
 
 
-        <h4>入睡时间</h4>
+      <ReactHighstock config = {option1} ref="chart1"></ReactHighstock>
+
+<div style={{width:'35%',display:'inline-block',height:'100px',marginTop:'60px'}}>
+
+<div className="statssub1">7小时35分</div>
+<div style={{display:'inline-block',float:'right',marginTop:'19px',marginRight:'45px',color:'#00ACC1'}}>
+平均睡眠时间&nbsp;
+  </div>
+
+  </div>
+<div style={{width:'4%',display:'inline-block'}}></div>
+<div style={{width:'30%',display:'inline-block'}}>
+  <div className="statssub1">23:09</div>
+  <div style={{display:'inline-block',float:'right',marginTop:'19px',marginRight:'45px',color:'#00ACC1'}}>
+  平均每晚入睡时刻&nbsp;
+    </div>
+
+</div>
 
 
-      <ReactHighcharts config = {option1} ref="chart1"></ReactHighcharts>
+<div style={{width:'30%',display:'inline-block'}}>
+  <div className="statssub1">07:53</div>
+  <div style={{display:'inline-block',float:'right',marginTop:'19px',marginRight:'45px',color:'#00ACC1',width:'110px'}}>
+  平均起床时刻
+    </div>
+</div>
 
 
 
-
+{/*
     <Card style={{marginTop:'25px'}}>
     <CardHeader
       title="起床统计"
@@ -369,9 +469,9 @@ const SleepTab = React.createClass({
     <CardText>
       <ReactHighcharts config = {option2} ref="chart2"></ReactHighcharts>
     </CardText>
-    </Card>
+  </Card>
 
-
+  */}
 
 
 

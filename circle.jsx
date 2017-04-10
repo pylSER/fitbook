@@ -109,11 +109,7 @@ const MainContent = React.createClass({
          value={0}
 
        />
-       <Tab
-         icon={<HotIcon/>}
-         label={<div style={{color:'white',zIndex:'999',fontSize:'18px'}}>热门</div>}
-         value={1}
-       />
+
      </Tabs>
 
      <SwipeableViews
@@ -126,12 +122,6 @@ const MainContent = React.createClass({
 
              <RankTab />
 
-           </div>
-
-
-
-           <div >
-             <RankTab />
            </div>
 
 

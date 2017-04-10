@@ -426,7 +426,7 @@ this.refs.atylocation.getInputNode().value = res;
           <AandD id="2" />
 
 <div className="wholecover" >
-         <Cover username={this.state.username}/>
+         <Cover username={this.state.username} infoStatus="right1"/>
 </div>
 <div className="rightcover">
          <CoverRight username={this.state.username}/>

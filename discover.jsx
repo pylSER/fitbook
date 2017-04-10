@@ -6,7 +6,9 @@ import {Link} from 'react-router';
 import FriendIcon from 'material-ui/svg-icons/action/face';
 import GroupIcon from 'material-ui/svg-icons/social/people';
 import AtyIcon from 'material-ui/svg-icons/image/assistant-photo';
-
+import HotIcon from 'material-ui/svg-icons/social/whatshot';
+import HotTab from './hotTab.jsx';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import Card_group from './groupCard.jsx';
 import Card_aty from './atyCard.jsx';
 import AandD from './appbaranddrawer.jsx';
@@ -26,7 +28,6 @@ const discover = React.createClass({
         }
     },
     componentDidMount: function () {
-        this.getfriends();
         this.getatys();
     },
     refresh(name){
@@ -178,33 +179,34 @@ const discover = React.createClass({
 <div>
 
   <AandD id="4"/>
-  
-            <div className="discover">
-                {/*<div className="quanzi">圈子</div>*/}
-                {/*<div className="haoyou">好友</div>*/}
-                {/*{alert(this.state.friendTip)}*/}
-                {/*<div className="friendTip" onClick={this.setFriendTip}>{this.state.friendTip}</div>*/}
-
-                {/*<div>*/}
-                    {/*{this.state.rowobj}*/}
-                {/*</div>*/}
-
-
-
-
-                <div className="discover_grp">群组一览</div>
-                <div>
-                    <Card_group/>
-                </div>
-
-
-                <div className="discover_aty">活动一览</div>
-                <div className="tip" onClick={this.setAtyTip}>{this.state.atyTip}</div>
-                {this.state.rowatyobj}
+    <div style={{height:'61px'}}></div>
+    <div style={{paddingTop:'40px'}}>
+        <div id="discoverLeft">
+            <Tabs inkBarStyle={{backgroundColor:'#FFEB3B'}} tabItemContainerStyle={{height:'70px'}}>
+                <Tab
+                    icon={<HotIcon/>}
+                    label={<div style={{color:'white',zIndex:'999',fontSize:'18px'}}>热门</div>}
+                    value={1}
+                />
+            </Tabs>
+            <div >
+                <HotTab />
             </div>
+        </div>
 
-            </div>
-
+        <div className="discover">
+            <div className="discover_grp">群组一览</div>
+            <div className="tip"></div>
+            <div><Card_group/></div>
+            {/*<div className="discover_aty">*/}
+                {/**/}
+            {/*</div>*/}
+            <div className="discover_aty">活动一览</div>
+            <div className="tip" onClick={this.setAtyTip}>{this.state.atyTip}</div>
+            {this.state.rowatyobj}
+        </div>
+     </div>
+</div>
 
         );
     }
