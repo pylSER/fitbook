@@ -18,6 +18,8 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import Checkbox from 'material-ui/Checkbox';
+import MapDIV from './mapDIV.jsx';
+import MapIcon from 'material-ui/svg-icons/maps/add-location';
 
 function isInteger(str) {
   if(/^\d+$/.test(str))
@@ -46,6 +48,8 @@ const MyInfo = React.createClass({
       isatychallenge:false,
       atyerrormsg:"",
       maxexp:0,
+      isMapOpen:false,
+      mapaddress:"地点",
 
 
     }
@@ -106,6 +110,27 @@ const MyInfo = React.createClass({
 
   var date=new Date(strdate);
   return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  },
+  handleMapOpen(){
+
+    this.setState({isMapOpen: true});
+  },
+  handleMapClose(){
+    this.setState({isMapOpen: false});
+  },
+
+  handleMapConfirm(){
+    var addinfo=this.refs.addinfo.getValue();
+
+    var maddress=document.getElementById("mapaddress").innerText;
+
+    var res=maddress+" "+addinfo;
+
+this.setState({mapaddress: ""});
+this.refs.atylocation.getInputNode().value = res;
+
+
+    this.setState({isMapOpen: false});
   },
 
   addaty(){
@@ -356,6 +381,19 @@ const MyInfo = React.createClass({
       />,
     ];
 
+    const mapactions = [
+      <FlatButton
+        label="取消"
+        primary={true}
+        onTouchTap={this.handleMapClose}
+      />,
+      <FlatButton
+        label="确定"
+        primary={true}
+        onTouchTap={this.handleMapConfirm}
+      />,
+    ];
+
     return (
       <div>
       <div id="fixedbutton" style={{display:this.state.circledisplayinfo}}>
@@ -419,8 +457,9 @@ const MyInfo = React.createClass({
   <TextField ref="atyname" floatingLabelText="活动名称"
   /><br/>
   <TextField ref="atyintro" floatingLabelText="简介" /><br/>
-  <TextField ref="atylocation" floatingLabelText="地点"
-  /><br/>
+    <TextField ref="atylocation" hintText={this.state.mapaddress}
+    /><div onTouchTap={this.handleMapOpen} style={{cursor:'pointer',verticalAlign:'bottom',display:'inline-block',marginLeft:'15px'}} ><MapIcon color="#00c1d7" /></div><br/>
+
 
   <span>选择一项运动:</span>
   <DropDownMenu value={this.state.dropdownvalue} onChange={this.handleDropDownChange}>
@@ -467,6 +506,23 @@ const MyInfo = React.createClass({
         <div>{this.state.atyerrormsg}</div>
 
 
+
+  </Dialog>
+
+
+  <Dialog
+      title={<div>选择地点:<span id="mapaddress"></span></div>}
+      actions={mapactions}
+      modal={true}
+      open={this.state.isMapOpen}
+      contentStyle={{width:'750px'}}
+      autoScrollBodyContent={false}
+  >
+
+<MapDIV />
+
+<h5 style={{display:'inline-block',marginRight:'10px'}}>附加描述</h5>
+  <TextField ref="addinfo" floatingLabelText="可以填写熟知的地址和标志性建筑" /><br/>
 
   </Dialog>
 
