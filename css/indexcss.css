@@ -29,7 +29,7 @@ text-align: center;
 .discover{
 
     display:inline-block;
-    width: 30%;
+    width: 60%;
     vertical-align:top;
     margin-left: 5%;
 
@@ -39,15 +39,17 @@ text-align: center;
 
     color:#5A5A5A;
     display:inline-block;
-    width:30%;
+    width:60%;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .discover_aty{
     color:#5A5A5A;
     display:inline-block;
-    width:30%;
+    width:60%;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 
@@ -307,6 +309,7 @@ vertical-align:top;
     display:inline-block;
     width:50%;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .friendTip{
@@ -326,6 +329,7 @@ vertical-align:top;
     display:inline-block;
     width:100%;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .huodong{
@@ -333,6 +337,7 @@ vertical-align:top;
     display:inline-block;
     width:60%;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .tip{

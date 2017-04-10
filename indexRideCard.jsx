@@ -111,7 +111,7 @@ const IndexCard = React.createClass({
       alert ("Browser does not support HTTP Request");
       return;
     }
-    var url="http://127.0.0.1:80/fitbook/poster.php?ssid=";
+    var url="http://127.0.0.1:8888/fitbook/poster.php?ssid=";
     url+=getCookie("ssid");
     url+="&type=";
     url+="2";
@@ -129,7 +129,7 @@ const IndexCard = React.createClass({
             that.handleDialogClose();
 
           }else{
-            alert("发布失败，请检查 网络");
+            alert("发布失败，请检查网络");
           }
 
       }
@@ -179,8 +179,8 @@ const IndexCard = React.createClass({
 
                     <ul className="nav nav-tabs nav-justified" style={{display:'inline-block',width: '90%'}}>
                         <li role="presentation" className="active"><a href="#time" data-toggle="tab">耗时<br/>32min</a></li>
-                        <li role="presentation"><a href="#avgspeed" data-toggle="tab">平均速度<br/>5.2km/h</a></li>
-                        <li role="presentation"><a href="#maxspeed" data-toggle="tab">最大速度<br/>7.2km/h</a></li>
+                        <li role="presentation"><a href="#avgspeed" data-toggle="tab">平均速度<br/>16km/h</a></li>
+                        <li role="presentation"><a href="#maxspeed" data-toggle="tab">最大速度<br/>30km/h</a></li>
                         <li role="presentation"><a href="#calorie" data-toggle="tab">消耗热量<br/>1098.8kCal</a></li>
                     </ul>
 
@@ -191,26 +191,24 @@ const IndexCard = React.createClass({
                         style={{float:'right',marginTop:'-10px'}}
                     >
                         <MenuItem  onTouchTap={this.handleDialogOpen} primaryText="分享"  leftIcon={<ShareIcon />}/>
-                        <Link to={{ pathname: '/stats/0' }}  style={{ textDecoration: 'none' }}>    <MenuItem primaryText="历史数据"  leftIcon={<HistoryIcon />}/> </Link>
+                        <Link to={{ pathname: '/stats/3' }}  style={{ textDecoration: 'none' }}>    <MenuItem primaryText="历史数据"  leftIcon={<HistoryIcon />}/> </Link>
                     </IconMenu>
                 </div>
 
                 <div id="myTabContent" className="tab-content">
                     <div className="tab-pane fade in active" id="time">
-                        <p>中小学生，入睡时间应安排在晚上8点-9点；一般工薪阶层，入睡应安排在晚上9点-10点；年轻人习惯于入睡时间不应晚于11点-12点，
-                            否则会影响身体的正常代谢,爱美的人，应该在凌晨2:00之前睡,老人在晚上9:00--10:00之间睡觉比较好。</p>
+                        <p>骑行时间适中，时间不宜过长，时间过短达不到锻炼效果，过长身体可能吃不消，对身体是一种损耗。每天半个小时到一个钟头是合适的时间长度，持之以恒会有效果。</p>
                     </div>
                     <div className="tab-pane fade" id="avgspeed">
-                        <p>研究发现，那些在早上5:22―7:21 分起床的人，其血液中有一种能引起心脏病的物质含量较高，
-                            因此，在7:21之后起床对身体健康更加有益；早上喝一杯清水，可以补充晚上的缺水状态；
-                            早饭可以帮助你维持血糖水平的稳定；
-                            早晨免疫系统在这个时间的功能最弱，不宜锻炼。</p>
+                        <p>骑行速度略偏低，普通代步功能的自行车，在市内的道路中的骑行速度大概是15-18公里每小时，如果是山地车，
+                            在骑手的体力和路况都很好的情况下骑行速度大概是25公里每小时左右，所以应该适当提高速度，但要以身体状况为主。</p>
                     </div>
                     <div className="tab-pane fade" id="maxspeed">
-                        <p></p>
+                        <p>最大速度略偏低，普通代步功能的自行车，在市内的道路中的骑行瞬间速度可以达到30公里每小时以上，如果是山地车，
+                            在骑手的体力和路况都很好的情况下，短时间内的骑行速度可以达到30-35公里每小时，瞬间的最高速度可以达到40公里每小时以上，所以应该适当提高速度，但要以身体状况为主。</p>
                     </div>
                     <div className="tab-pane fade" id="calorie">
-                        <p></p>
+                        <p>消耗热量适中，人体每减掉一公斤脂肪，需消耗7700卡热量，运动量应根据自己身体条件量力而行，适量的运动有助于强身健体，过量对身体也是一种伤害，运动到出汗即可。</p>
                     </div>
                 </div>
                 {/*<div style={{height:'7%'}}></div>*/}

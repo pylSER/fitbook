@@ -21,11 +21,11 @@ const Card_group = React.createClass({
                         </div>
 
                         <div style={{width:220,height:20,marginLeft:18}}>
-                            <Avatar src="assets/taylor.jpg" size={30} style={{marginTop:"-50%",zIndex:30,position:"relative"}}/>
-                            <Avatar src="assets/red.png" size={30} style={{marginTop:"-50%",marginLeft:"-7%",zIndex:20,position:"relative"}}/>
-                            <Avatar src="assets/adam.jpg" size={30} style={{marginTop:"-50%",marginLeft:"-7%",zIndex:10,position:"relative"}}/>
-                            <Avatar src="assets/purple.png" size={30} style={{marginTop:"-50%",marginLeft:"-7%",zIndex:7,position:"relative"}}/>
-                            <Avatar src="assets/green.png" size={30} style={{marginTop:"-50%",marginLeft:"-7%",zIndex:4,position:"relative"}}/>
+                            <Avatar src="assets/taylor.jpg" size={30} style={{marginTop:"-10%",zIndex:30,position:"relative"}}/>
+                            <Avatar src="assets/red.png" size={30} style={{marginTop:"-10%",marginLeft:"-7%",zIndex:20,position:"relative"}}/>
+                            <Avatar src="assets/adam.jpg" size={30} style={{marginTop:"-10%",marginLeft:"-7%",zIndex:10,position:"relative"}}/>
+                            <Avatar src="assets/purple.png" size={30} style={{marginTop:"-10%",marginLeft:"-7%",zIndex:7,position:"relative"}}/>
+                            <Avatar src="assets/green.png" size={30} style={{marginTop:"-10%",marginLeft:"-7%",zIndex:4,position:"relative"}}/>
                         </div>
 
                         <div style={{width:220,height:130}}>

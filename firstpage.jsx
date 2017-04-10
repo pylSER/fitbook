@@ -62,7 +62,7 @@ const MainContent = React.createClass({
         alert ("Browser does not support HTTP Request")
         return
       }
-      var url="http://127.0.0.1:80/fitbook/addsession.php?ssid=";
+      var url="http://127.0.0.1:8888/fitbook/addsession.php?ssid=";
       url+=ssholder.getsession();
 
 

@@ -36,7 +36,7 @@ const Card_friend = React.createClass({
                         <img src={this.state.coverlink} style={{width:170,height:100}}/>
                     </div>
                     <div style={{width:170,height:80,backgroundColor:this.state.maincolor}}>
-                        <Avatar src={this.state.avatarlink} size={30} style={{marginTop:"-50%",marginLeft:18,zIndex:30,position:"relative"}}/>
+                        <Avatar src={this.state.avatarlink} size={30} style={{marginTop:"-15%",marginLeft:18,zIndex:30,position:"relative"}}/>
                         <CardTitle title={this.state.friendname} titleColor={'white'} titleStyle={{fontSize:18}} style={{marginTop:-20}} />
                     </div>
 

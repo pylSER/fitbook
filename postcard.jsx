@@ -14,6 +14,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 
+
 const PostCard = React.createClass({
 
   getInitialState(){
@@ -33,8 +34,66 @@ const PostCard = React.createClass({
       isliked:this.props.isliked,
       postid:this.props.postid,
       isDelDiaShow:false,
+      commentinfo:"",
+      commentnum:0,
+      replyinput:"",
+      replyinfo:"",
     }
   },
+
+handleComment() {
+      var content=this.refs.commentcontent.getValue();
+        var xmlHttp =GetXmlHttpObject();
+
+        var url="http://localhost:8888/fitbook/commentadd.php?postid=";
+        url+=this.state.postid;
+        url+="&content=";
+        url+=content;
+
+        var that=this;
+        xmlHttp.onreadystatechange=function(){
+            if (xmlHttp.readyState==4 && xmlHttp.status==200){
+                if(xmlHttp.responseText=="1"){
+                    alert("评论成功");
+                    location.reload();
+                }else{
+                    alert("评论失败，请检查网络");
+                }
+
+            }
+        };
+
+        xmlHttp.open("GET",url,true);
+        xmlHttp.send();
+    },
+
+    handleReplyChange: function(event) {
+        this.setState({replyinput: event.target.value});
+    },
+
+    handleReply(authorname) {
+        var rows=[];
+        var temp="回复给"+authorname;
+
+        rows.push(<div style={{marginLeft:30}}>
+          <TextField style={{paddingLeft:15}} hintText={temp} onChange={this.handleReplyChange}/>
+          <FlatButton style={{marginLeft:30}} label="回复" onTouchTap={this.replyresult.bind(this,authorname)}/>
+        </div>);
+        this.setState({replyinfo: rows});
+    },
+
+    replyresult(authorname) {
+        var rows=[];
+        rows.push(<ListItem style={{paddingLeft:30}} leftAvatar={<Avatar src={this.state.avatarlink} />}
+                            secondaryText={
+                              <p style={{color: darkBlack}}>{this.state.username}<br/>
+                                  回复给{authorname}:&nbsp;&nbsp;&nbsp;&nbsp;{this.state.replyinput}
+                              </p>
+                            }
+                            secondaryTextLines={2}
+        />);
+        this.setState({replyinfo: rows});
+    },
 
   handleLike(){
     if(this.state.likebg=='#eaeaea'){
@@ -93,17 +152,51 @@ const PostCard = React.createClass({
 
   },
   componentDidMount: function() {
+      this.initData();
       if(this.state.sporttypeurl=="null"){
         this.setState({icondisplay: 'none'});
       }
-
-
       if(this.state.isliked==1){
           this.setState({likebg: '#41B0CA'});
       }else{
         this.setState({likebg: '#eaeaea'});
       }
   },
+    initData(){
+        var xmlHttp =GetXmlHttpObject();
+        var url="http://localhost:8888/fitbook/commentgetter.php?postid=";
+        url+=this.state.postid;
+
+        var that=this;
+        xmlHttp.onreadystatechange=function(){
+            if (xmlHttp.readyState==4 && xmlHttp.status==200){
+                var jsonstr=xmlHttp.responseText;
+                var json=new Function("return" + jsonstr)();
+                that.setState({commentnum: json.length});
+
+                var rows=[];
+                for(var i=0;i<json.length;i++){
+                    rows.push(<ListItem leftAvatar={<Avatar src={json[i].avatar} />}
+                                        rightIconButton={<IconMenu
+                                            iconButtonElement={<IconButton><MoreVertIcon/></IconButton>} anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                                            targetOrigin={{horizontal: 'left', vertical: 'top'}}><MenuItem primaryText="回复" onTouchTap={that.handleReply.bind(this,json[i].authorname)}/></IconMenu>}
+                        secondaryText={
+                          <p style={{color: darkBlack}}>{json[i].authorname}
+                          <span style={{color: grey400,marginLeft:30}}>{json[i].createtime}</span><br/>
+                              {json[i].content}
+                            </p>
+                        }
+                        secondaryTextLines={2}
+                    />);
+                    rows.push(<Divider inset={true} />);
+                }
+                that.setState({commentinfo: rows});
+            }
+        };
+
+        xmlHttp.open("GET",url,true);
+        xmlHttp.send();
+    },
 
   sendlikedata(params){
     var xmlHttp =GetXmlHttpObject();
@@ -153,17 +246,6 @@ const PostCard = React.createClass({
       />,
     ];
 
-    const rightIconMenu = (
-        <IconMenu
-            iconButtonElement={<IconButton><MoreVertIcon/></IconButton>}
-            anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-            targetOrigin={{horizontal: 'left', vertical: 'top'}}
-        >
-          <MenuItem primaryText="点赞" />
-          <MenuItem primaryText="回复" />
-        </IconMenu>
-    );
-
     return (
 
       <div style={{marginTop:'25px',display:this.state.isDeleted}}>
@@ -207,7 +289,7 @@ const PostCard = React.createClass({
                 tooltipPosition="bottom-right">
               <CommentIcon/>
             </IconButton>
-            <span>2评论</span>
+            <span>{this.state.commentnum}评论</span>
           </span>
           <div style={{display:'inline-block',float:'right',marginTop:'5px'}}>
             <img src={this.state.sporttypeurl} height={30} width={30} style={{display:this.state.icondisplay}}/>
@@ -217,12 +299,13 @@ const PostCard = React.createClass({
 
         <CardMedia>
           <div style={{margin:15}}>
-            <Avatar src="assets/avatar/1.jpeg" />
+            <Avatar src={this.state.avatarlink} />
             <TextField
+                ref="commentcontent"
                 style={{paddingLeft:15}}
                 hintText="发表评论..."
             />
-            <FlatButton label="发布"/>
+            <FlatButton style={{marginLeft:30}} label="发布" onTouchTap={this.handleComment}/>
           </div>
         </CardMedia>
 
@@ -230,31 +313,8 @@ const PostCard = React.createClass({
 
         <CardMedia expandable={true}>
           <List>
-            <ListItem
-                leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
-                primaryText="Test"
-                rightIconButton={rightIconMenu}
-                secondaryText={
-                  <p>
-                    <span style={{color: darkBlack}}>2017-01-21</span><br/>
-                    厉害了加油
-                  </p>
-                }
-                secondaryTextLines={2}
-            />
-            <Divider inset={true} />
-            <ListItem
-                leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
-                primaryText="Test2"
-                rightIconButton={rightIconMenu}
-                secondaryText={
-                  <p>
-                    <span style={{color: darkBlack}}>2017-01-21</span><br/>
-                    厉害了加油
-                  </p>
-                }
-                secondaryTextLines={2}
-            />
+              {this.state.commentinfo}
+              {this.state.replyinfo}
           </List>
         </CardMedia>
 
