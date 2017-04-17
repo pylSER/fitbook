@@ -10,6 +10,7 @@ import OneIcon from 'material-ui/svg-icons/image/looks-one';
 import TwoIcon  from 'material-ui/svg-icons/image/looks-two';
 
 import ThreeIcon  from 'material-ui/svg-icons/image/looks-3';
+import {Link} from 'react-router';
 
 import Paper from 'material-ui/Paper';
 
@@ -17,95 +18,116 @@ const ListExampleContacts = () => (
 <div>
   <Subheader>作息规律排行</Subheader>
     <List>
+      <Link to="/myinfo/KILLER?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Eric Hoffman"
+        primaryText="KILLER"
         rightIcon={<OneIcon color="#ea4335" />}
         insetChildren={true}
         leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/Adam?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="James Anderson"
+        primaryText="Adam"
         rightIcon={<TwoIcon color="#4285f4" />}
         insetChildren={true}
         leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/tracy?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Kerem Suer"
+        primaryText="tracy"
         rightIcon={<ThreeIcon color="#fbbc05" />}
         insetChildren={true}
         leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
+        </Link>
     </List>
     <Divider />
     <Subheader>计步排行</Subheader>
     <List>
-
+      <Link to="/myinfo/Adam?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Adham Dannaway"
+        primaryText="Adam"
         insetChildren={true}
         rightIcon={<OneIcon color="#ea4335"/>}
         leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/KILLER?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Allison Grayce"
+        primaryText="KILLER"
         insetChildren={true}
         rightIcon={<TwoIcon color="#4285f4" />}
         leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/tracy?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Angel Ceballos"
+        primaryText="tracy"
         insetChildren={true}
         rightIcon={<ThreeIcon color="#fbbc05" />}
         leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
+        </Link>
     </List>
 
     <Divider />
     <Subheader>跑步排行</Subheader>
     <List>
-
+      <Link to="/myinfo/Adam?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Adham Dannaway"
+        primaryText="Adam"
         insetChildren={true}
         rightIcon={<OneIcon color="#ea4335" />}
         leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/KILLER?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Allison Grayce"
+        primaryText="KILLER"
         insetChildren={true}
         rightIcon={<TwoIcon color="#4285f4" />}
         leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/tracy?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Angel Ceballos"
+        primaryText="tracy"
         insetChildren={true}
         rightIcon={<ThreeIcon color="#fbbc05" />}
         leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
+        </Link>
     </List>
 
     <Divider />
     <Subheader>骑行排行</Subheader>
     <List>
-
+      <Link to="/myinfo/Adam?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Adham Dannaway"
+        primaryText="Adam"
         insetChildren={true}
         rightIcon={<OneIcon color="#ea4335" />}
         leftAvatar={<Avatar src="assets/avatar/2.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/KILLER?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Allison Grayce"
+        primaryText="KILLER"
         insetChildren={true}
         rightIcon={<TwoIcon color="#4285f4" />}
         leftAvatar={<Avatar src="assets/avatar/1.jpeg" />}
       />
+        </Link>
+      <Link to="/myinfo/tracy?refs=yes" style={{ textDecoration: 'none' }}>
       <ListItem
-        primaryText="Angel Ceballos"
+        primaryText="tracy"
         insetChildren={true}
         rightIcon={<ThreeIcon color="#fbbc05" />}
         leftAvatar={<Avatar src="assets/avatar/3.jpeg" />}
       />
+        </Link>
     </List>
   </div>
 );

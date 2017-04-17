@@ -223,11 +223,10 @@ var option2={
        series: [{
            name: '起床曲线',
            data: [
-                       [0, 1248825500000],
-                       [0, 1248825600030],
-                       [0, 1248825800100]
-                   ]
-       }, ]
+
+           ]
+
+       }]
 }
 
 var option3={
@@ -406,9 +405,8 @@ const SleepTab = React.createClass({
           that.setState({totalduration: json[2].totalduration});
 
 
-            let chart = that.refs.chart1.getChart();
-            chart.series[0].setData(json[3]);
-
+          let chart = that.refs.chart1.getChart();
+          chart.series[0].setData(json[3]);
 
 
 

@@ -35,7 +35,7 @@ const GroupInfo = React.createClass({
 
     return (
       <div>
-      <AandD />
+      <AandD id="2" />
 
 <div className="wholecover">
      <CoverForGroup />

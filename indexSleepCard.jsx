@@ -36,7 +36,7 @@ const IndexCard = React.createClass({
         return {
             isDialogOpen: false,
             isSnackerOpen:false,
-            sleep:0,
+            sleep:"23:43",
             // color3:'#666666',
             // color1:'#666666',
             // color2:'#666666',

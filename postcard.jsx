@@ -13,6 +13,8 @@ import {darkBlack,grey300,grey400} from 'material-ui/styles/colors';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
+import {Link} from 'react-router';
+import Snackbar from 'material-ui/Snackbar';
 
 
 const PostCard = React.createClass({
@@ -38,6 +40,10 @@ const PostCard = React.createClass({
       commentnum:0,
       replyinput:"",
       replyinfo:"",
+      momentImg:this.props.momentImg,
+        currentavatar:"",
+        snackopen:false,
+        textvalue:'',
     }
   },
 
@@ -45,7 +51,9 @@ handleComment() {
       var content=this.refs.commentcontent.getValue();
         var xmlHttp =GetXmlHttpObject();
 
-        var url="http://localhost:8888/fitbook/commentadd.php?postid=";
+        var url="http://127.0.0.1:8888/fitbook/commentadd.php?ssid=";
+        url+=getCookie("ssid");
+        url+="&postid=";
         url+=this.state.postid;
         url+="&content=";
         url+=content;
@@ -54,8 +62,12 @@ handleComment() {
         xmlHttp.onreadystatechange=function(){
             if (xmlHttp.readyState==4 && xmlHttp.status==200){
                 if(xmlHttp.responseText=="1"){
-                    alert("评论成功");
-                    location.reload();
+                    // alert("评论成功");
+                    // location.reload();
+
+                    that.refs.commentcontent.getInputNode().value = '';
+                    that.setState({snackopen: true});
+                  that.componentDidMount();
                 }else{
                     alert("评论失败，请检查网络");
                 }
@@ -115,7 +127,7 @@ handleComment() {
       alert ("Browser does not support HTTP Request")
       return
     }
-    var url="http://localhost:8888/fitbook/postdeleter.php?postid=";
+    var url="http://127.0.0.1:8888/fitbook/postdeleter.php?postid=";
 
     url+=this.state.postid;
 
@@ -137,6 +149,10 @@ handleComment() {
     xmlHttp.send();
 
   },
+
+  handleRequestClose(){
+    this.setState({snackopen:false});
+  },
   handleDelDiaOpen(){
     this.setState({isDelDiaShow:true});
   },
@@ -153,6 +169,7 @@ handleComment() {
   },
   componentDidMount: function() {
       this.initData();
+      this.getAvatar();
       if(this.state.sporttypeurl=="null"){
         this.setState({icondisplay: 'none'});
       }
@@ -162,9 +179,26 @@ handleComment() {
         this.setState({likebg: '#eaeaea'});
       }
   },
+    getAvatar() {
+        var xmlHttp =GetXmlHttpObject();
+        var url="http://127.0.0.1:8888/fitbook/getavatar.php?ssid=";
+        url+=getCookie("ssid");
+
+        var that=this;
+        xmlHttp.onreadystatechange=function(){
+            if (xmlHttp.readyState==4 && xmlHttp.status==200){
+                var temp=xmlHttp.responseText;
+                that.setState({currentavatar: temp});
+            }
+        };
+        xmlHttp.open("GET",url,true);
+        xmlHttp.send();
+    },
     initData(){
         var xmlHttp =GetXmlHttpObject();
-        var url="http://localhost:8888/fitbook/commentgetter.php?postid=";
+        var url="http://127.0.0.1:8888/fitbook/commentgetter.php?ssid=";
+        url+=getCookie("ssid");
+        url+="&postid=";
         url+=this.state.postid;
 
         var that=this;
@@ -176,18 +210,20 @@ handleComment() {
 
                 var rows=[];
                 for(var i=0;i<json.length;i++){
-                    rows.push(<ListItem leftAvatar={<Avatar src={json[i].avatar} />}
-                                        rightIconButton={<IconMenu
-                                            iconButtonElement={<IconButton><MoreVertIcon/></IconButton>} anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                                            targetOrigin={{horizontal: 'left', vertical: 'top'}}><MenuItem primaryText="回复" onTouchTap={that.handleReply.bind(this,json[i].authorname)}/></IconMenu>}
-                        secondaryText={
-                          <p style={{color: darkBlack}}>{json[i].authorname}
-                          <span style={{color: grey400,marginLeft:30}}>{json[i].createtime}</span><br/>
-                              {json[i].content}
-                            </p>
-                        }
-                        secondaryTextLines={2}
-                    />);
+                    rows.push(
+                        <ListItem leftAvatar={<Avatar src={json[i].avatar} />}
+                                  rightIconButton={<IconMenu
+                                      iconButtonElement={<IconButton><MoreVertIcon/></IconButton>} anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                                      targetOrigin={{horizontal: 'left', vertical: 'top'}}><MenuItem primaryText="回复" onTouchTap={that.handleReply.bind(this,json[i].authorname)}/></IconMenu>}
+                                  secondaryText={
+                                      <p style={{color: darkBlack}}>{json[i].authorname}
+                                          <span style={{color: grey400,marginLeft:30}}>{json[i].createtime}</span><br/>
+                                          {json[i].content}
+                                      </p>
+                                  }
+                                  secondaryTextLines={2}
+                        />
+                        );
                     rows.push(<Divider inset={true} />);
                 }
                 that.setState({commentinfo: rows});
@@ -204,7 +240,7 @@ handleComment() {
       alert ("Browser does not support HTTP Request")
       return
     }
-    var url="http://localhost:8888/fitbook/likedealer.php?ssid=";
+    var url="http://127.0.0.1:8888/fitbook/likedealer.php?ssid=";
     url+=getCookie("ssid");
     url+="&postid=";
     url+=this.state.postid;
@@ -265,7 +301,7 @@ handleComment() {
         </CardText>
 
         <CardMedia>
-          <img src="assets/cover.jpg"/>
+          <img src={this.state.momentImg}/>
         </CardMedia>
 
         <CardActions>
@@ -299,11 +335,12 @@ handleComment() {
 
         <CardMedia>
           <div style={{margin:15}}>
-            <Avatar src={this.state.avatarlink} />
+              <Avatar src={this.state.currentavatar} />
             <TextField
                 ref="commentcontent"
                 style={{paddingLeft:15}}
                 hintText="发表评论..."
+                
             />
             <FlatButton style={{marginLeft:30}} label="发布" onTouchTap={this.handleComment}/>
           </div>
@@ -328,6 +365,16 @@ handleComment() {
           open={this.state.isDelDiaShow}
           contentStyle={{width:'100%'}}
       ></Dialog>
+
+      <Snackbar
+               open={this.state.snackopen}
+               message="评论成功"
+               autoHideDuration={4000}
+               onRequestClose={this.handleRequestClose}
+             />
+
+
+
       </div>
     );
   }

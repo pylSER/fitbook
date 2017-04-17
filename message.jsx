@@ -106,7 +106,7 @@ const Message = React.createClass({
               <Cover username={this.state.username} infoStatus="right4"/>
           </div>
 
-          <AandD />
+          <AandD id="2"/>
           <div style={{height:'61px'}}></div>
           <div style={{marginLeft:'23%',marginRight:'23%'}}>
           {/*<p style={{color:'#5A5A5A'}}>你的消息</p>*/}

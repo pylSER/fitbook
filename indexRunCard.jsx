@@ -35,7 +35,7 @@ const IndexCard = React.createClass({
         return {
             isDialogOpen: false,
             isSnackerOpen:false,
-            sleep:0,
+            sleep:2.5,
             // color3:'#666666',
             // color1:'#666666',
             // color2:'#666666',
@@ -166,7 +166,7 @@ const IndexCard = React.createClass({
             <div style={{display:'inline-block',background:'url(./assets/circleblue.png)',
                 backgroundSize:'100% 100%',width:170,height:170,marginTop:'5%',cursor:'pointer'}}>
                 <div style={{height:'30%'}}></div>
-                <div style={{fontSize:18,color:'white',marginLeft:'28%'}}>昨日跑步</div>
+                <div style={{fontSize:18,color:'white',marginLeft:'28%'}}>今日跑步</div>
                 <div style={{fontSize:28,color:'white',marginLeft:'25%'}}>2.5km</div>
             </div>
 
@@ -255,7 +255,7 @@ const IndexCard = React.createClass({
                         underlineShow={false}
                     />
 
-                    <div style={{marginTop:'20px'}}>已添加今日睡眠数据：{this.state.sleep}</div>
+                  <div style={{marginTop:'20px'}}>已添加今日跑步数据：{this.state.sleep} km</div>
 
                 </Dialog>
 

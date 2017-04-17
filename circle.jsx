@@ -51,7 +51,7 @@ const MainContent = React.createClass({
         alert ("Browser does not support HTTP Request")
         return
       }
-      var url="http://localhost:8888/fitbook/cirpostgetter.php?ssid=";
+      var url="http://127.0.0.1:8888/fitbook/cirpostgetter.php?ssid=";
       url+=getCookie("ssid");
 
 
@@ -64,8 +64,18 @@ const MainContent = React.createClass({
 
           var rows=[];
           for(var i=0;i<json.length;i++){
-            rows.push(<PostCard isManage="0" likenum={json[i].likenum} username={json[i].username} datetime={json[i].date+" "+json[i].time} postid={json[i].postid}
-            content={json[i].content} sporttypeurl={json[i].sporttypeurl}  sportdata={json[i].adddata} avatarlink={json[i].useravatar} isliked={json[i].isliked}/>);
+              var num=i+1;
+            var link="assets/moment"+num+".jpg";
+              if(i>5){
+                  rows.push(<PostCard isManage="0" likenum={json[i].likenum} username={json[i].username} datetime={json[i].date+" "+json[i].time} postid={json[i].postid}
+                                      content={json[i].content} sporttypeurl={json[i].sporttypeurl}  sportdata={json[i].adddata} avatarlink={json[i].useravatar} isliked={json[i].isliked}
+                                      momentImg="assets/cover.jpg"/>);
+              }else {
+                  rows.push(<PostCard isManage="0" likenum={json[i].likenum} username={json[i].username} datetime={json[i].date+" "+json[i].time} postid={json[i].postid}
+                                      content={json[i].content} sporttypeurl={json[i].sporttypeurl}  sportdata={json[i].adddata} avatarlink={json[i].useravatar} isliked={json[i].isliked}
+                                      momentImg={link}/>);
+              }
+
           }
 
           if(json.length==0){

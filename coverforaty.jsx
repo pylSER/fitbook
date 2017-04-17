@@ -11,12 +11,16 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import UploadIcon from 'material-ui/svg-icons/file/file-upload';
+import Divider from 'material-ui/Divider';
+import ModifyIcon from 'material-ui/svg-icons/editor/mode-edit';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
+import {white,grey50,grey700} from 'material-ui/styles/colors';
+import MapDIV from './mapDIV.jsx';
+import MapIcon from 'material-ui/svg-icons/maps/add-location';
 
 function isInteger(str) {
   if(/^\d+$/.test(str))
@@ -27,13 +31,27 @@ function isInteger(str) {
  }
 }
 
+const minDate = new Date();
+ const maxDate = new Date();
+ minDate.setFullYear(minDate.getFullYear() );
+ minDate.setHours(9, 0, 0, 0);
+ minDate.setDate(23);
+ minDate.setMonth(4);
+ maxDate.setFullYear(maxDate.getFullYear() );
+ maxDate.setHours(12, 0, 0, 0);
+ maxDate.setDate(23);
+ maxDate.setMonth(4);
+
 const Cover = React.createClass({
   getInitialState(){
     return{
+
+      minDate: minDate,
+     maxDate: maxDate,
       atyid:this.props.atyid,
       isDialogShow:false,
       isSnackerOpen:false,
-      dropdownvalue:1,
+      dropdownvalue:3,
       isDelDiaShow:false,
       title:"",
       location:"",
@@ -54,6 +72,9 @@ const Cover = React.createClass({
       enddate:"",
       endtime:"",
       isExitDiaShow:false,
+      isMapOpen:false,
+      mapaddress:"",
+
 
 
 
@@ -98,6 +119,27 @@ const Cover = React.createClass({
     var stddate=this.formatDate(date);
 
     this.setState({startdate: stddate});
+  },
+  handleMapOpen(){
+
+    this.setState({isMapOpen: true});
+  },
+  handleMapClose(){
+    this.setState({isMapOpen: false});
+  },
+
+  handleMapConfirm(){
+    var addinfo=this.refs.addinfo.getValue();
+
+    var maddress=document.getElementById("mapaddress").innerText;
+
+    var res=maddress+" "+addinfo;
+
+this.setState({mapaddress: ""});
+this.refs.atylocation.getInputNode().value = res;
+
+
+    this.setState({isMapOpen: false});
   },
   changeEndDate(event,date){
     var stddate=this.formatDate(date);
@@ -321,6 +363,9 @@ const Cover = React.createClass({
 
 
   },
+
+
+
   handleDelDiaOpen(){
     this.setState({isDelDiaShow:true});
   },
@@ -441,23 +486,25 @@ const Cover = React.createClass({
         onTouchTap={this.handleInOrOut.bind(this,0)}
       />,
     ];
+    const mapactions = [
+      <FlatButton
+        label="取消"
+        primary={true}
+        onTouchTap={this.handleMapClose}
+      />,
+      <FlatButton
+        label="确定"
+        primary={true}
+        onTouchTap={this.handleMapConfirm}
+      />,
+    ];
+
 
     return (
 
-      <div >
-        <div id="coverforaty" style={{backgroundImage:"url("+this.state.coverlink+")"}}>
-          <IconMenu
-            iconButtonElement={<IconButton><MoreVertIcon color={'white'}/></IconButton>}
-            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-            targetOrigin={{horizontal: 'right', vertical: 'top'}}
-            style={{float:'right',display:this.state.leaderdisplay}}
-            >
-              <MenuItem primaryText="修改活动资料" onTouchTap={this.handleModify}/>
-              <MenuItem primaryText="删除" onTouchTap={this.handleDelDiaOpen}/>
+      <div style={{width: '73%'}}>
 
-          </IconMenu>
-        </div>
-
+        <div id="coverforaty" style={{backgroundImage:"url("+this.state.coverlink+")"}}></div>
 
         <div id="belowcoverforaty" style={{backgroundColor:this.state.maincolor}}>
           <div style={{fontSize:'30px',marginLeft:'20px',paddingTop:'40px',fontWeight:'600'}}>{this.state.title}</div>
@@ -469,11 +516,12 @@ const Cover = React.createClass({
           <div className="groupintrosub">活动结束时间: {this.state.realendtime}</div>
           <div className="groupintrosub">状态: {this.state.atystate}</div>
 
-
-
-
-
-
+          <List >
+            <Divider style={{marginBottom:'7px'}}/>
+            <ListItem style={{color: '#ffffff'}} leftIcon={<ModifyIcon color={grey50} />} primaryText="修改活动资料" onTouchTap={this.handleModify}/>
+            <ListItem style={{color: '#ffffff'}} leftIcon={<ModifyIcon color={grey50} />} primaryText="删除" onTouchTap={this.handleDelDiaOpen}/>
+            <Divider style={{marginBottom:'7px'}}/>
+          </List>
 
           <RaisedButton
             label="加入活动"
@@ -508,9 +556,11 @@ const Cover = React.createClass({
             contentStyle={{width:'350px'}}
             autoScrollBodyContent={true}
         >
-        <TextField ref="atyname" floatingLabelText="活动名称" /><br/>
-        <TextField ref="atyintro" floatingLabelText="简介"/><br/>
-        <TextField ref="atylocation" floatingLabelText="地点"/><br/>
+        <TextField ref="atyname" floatingLabelText="活动名称" defaultValue={this.state.title}/><br/>
+        <TextField ref="atyintro" floatingLabelText="简介" defaultValue={this.state.intro}/><br/>
+          <TextField ref="atylocation" hintText={this.state.mapaddress}  defaultValue={this.state.location}
+          /><div onTouchTap={this.handleMapOpen} style={{cursor:'pointer',verticalAlign:'bottom',display:'inline-block',marginLeft:'15px'}} ><MapIcon color="#00c1d7" /></div><br/>
+
 
         <span>选择一项运动:</span>
         <DropDownMenu value={this.state.dropdownvalue} onChange={this.handleDropDownChange}>
@@ -521,22 +571,22 @@ const Cover = React.createClass({
               <br />
 
               <span>奖励经验:&nbsp;</span>
-              <TextField ref="atycoin" floatingLabelText="金币数" style={{width:'150px'}} /><br/>
+              <TextField ref="atycoin" floatingLabelText="金币数" style={{width:'150px'}} defaultValue={this.state.coin}/><br/>
               <div>
                 <div style={{width:'100px',display:'inline-block'}}>
-                <DatePicker onChange={this.changeStartDate} hintText="开始日期"  textFieldStyle={{width:'100px'}}/>
+                <DatePicker onChange={this.changeStartDate} hintText="开始日期" defaultDate={this.state.minDate} textFieldStyle={{width:'100px'}}/>
                 </div>
                 <div style={{display:'inline-block',float:'right'}}>
-                <TimePicker onChange={this.changeStartTime} hintText="开始时间" format="24hr" textFieldStyle={{width:'100px'}}/>
+                <TimePicker onChange={this.changeStartTime} hintText="开始时间" defaultTime={this.state.minDate}  format="24hr" textFieldStyle={{width:'100px'}}/>
                 </div>
               </div>
 
               <div>
                 <div style={{width:'100px',display:'inline-block'}}>
-                <DatePicker onChange={this.changeEndDate} hintText="结束日期" textFieldStyle={{width:'100px'}}/>
+                <DatePicker onChange={this.changeEndDate} hintText="结束日期" defaultDate={this.state.maxDate} textFieldStyle={{width:'100px'}}/>
                 </div>
                 <div style={{display:'inline-block',float:'right'}}>
-                <TimePicker onChange={this.changeEndTime} hintText="结束时间" format="24hr" textFieldStyle={{width:'100px'}}/>
+                <TimePicker onChange={this.changeEndTime} hintText="结束时间" defaultTime={this.state.maxDate} format="24hr" textFieldStyle={{width:'100px'}}/>
                 </div>
               </div>
 
@@ -562,6 +612,23 @@ const Cover = React.createClass({
             open={this.state.isExitDiaShow}
             contentStyle={{width:'100%'}}
         ></Dialog>
+
+
+        <Dialog
+            title={<div>选择地点:<span id="mapaddress"></span></div>}
+            actions={mapactions}
+            modal={true}
+            open={this.state.isMapOpen}
+            contentStyle={{width:'750px'}}
+            autoScrollBodyContent={false}
+        >
+
+      <MapDIV />
+
+      <h5 style={{display:'inline-block',marginRight:'10px'}}>附加描述</h5>
+        <TextField ref="addinfo" floatingLabelText="可以填写熟知的地址和标志性建筑" /><br/>
+
+        </Dialog>
 
 
 
